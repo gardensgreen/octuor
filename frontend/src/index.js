@@ -9,6 +9,8 @@ import reportWebVitals from "./reportWebVitals";
 import configureStore from "./store";
 import fetch, { restoreCSRF } from "./store/csrf";
 
+import * as sessionActions from "./store/session";
+
 const store = configureStore();
 
 //Exposing store to the window if app is not in production.
@@ -21,6 +23,7 @@ if (process.env.NODE_ENV !== "production") {
 
     window.csrfFetch = fetch;
     window.store = store;
+    window.sessionActions = sessionActions;
 }
 
 ReactDOM.render(
