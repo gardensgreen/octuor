@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
 import LoginFormPage from "./components/LoginFormPage/LoginFormPage";
+import SignupFormPage from "./components/SignUpFormPage/SignUpFormPage";
 import * as sessionActions from "./store/session";
 
 function Root() {
@@ -17,6 +18,9 @@ function Root() {
             <Switch>
                 <Route path="/login">
                     <LoginFormPage />
+                </Route>
+                <Route path="/signup">
+                    <SignupFormPage />
                 </Route>
             </Switch>
         )
