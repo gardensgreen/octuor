@@ -7,11 +7,19 @@ import "./index.css";
 import Root from "./Root";
 import reportWebVitals from "./reportWebVitals";
 import configureStore from "./store";
+import fetch, { restoreCSRF } from "./store/csrf";
 
 const store = configureStore();
 
 //Exposing store to the window if app is not in production.
 if (process.env.NODE_ENV !== "production") {
+    window.store = store;
+}
+
+if (process.env.NODE_ENV !== "production") {
+    restoreCSRF();
+
+    window.csrfFetch = fetch;
     window.store = store;
 }
 

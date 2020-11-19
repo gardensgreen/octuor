@@ -16,15 +16,11 @@ const usersRouter = require("./users.js");
 //   return res.json({ user });
 // }));
 
-// // GET /api/restore-user
-// const { restoreUser } = require('../../utils/auth.js');
-// router.get(
-//   '/restore-user',
-//   restoreUser,
-//   (req, res) => {
+// GET /api/restore-user
+// const { restoreUser } = require("../../utils/auth.js");
+// router.get("/restore-user", restoreUser, (req, res) => {
 //     return res.json(req.user);
-//   }
-// );
+// });
 
 // // GET /api/require-auth
 // const { requireAuth } = require('../../utils/auth.js');
@@ -37,7 +33,7 @@ const usersRouter = require("./users.js");
 // );
 
 router.post("/test", function (req, res) {
-  res.json({ requestBody: req.body });
+    res.json({ requestBody: req.body });
 });
 
 router.use("/session", sessionRouter);
