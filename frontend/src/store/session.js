@@ -11,6 +11,12 @@ const setSession = (user) => {
     };
 };
 
+const destroySession = () => {
+    return {
+        type: DESTROY_SESSION,
+    };
+};
+
 export const loginUser = ({ credential, password }) => async (dispatch) => {
     try {
         const res = await fetch("/api/session", {
@@ -31,10 +37,10 @@ export const loginUser = ({ credential, password }) => async (dispatch) => {
     }
 };
 
-const destroySession = () => {
-    return {
-        type: DESTROY_SESSION,
-    };
+export const restoreUser = () => async (dispatch) => {
+    const res = await fetch("/api/session");
+    dispatch(setSession(res.data.user));
+    return res;
 };
 
 const sessionReducer = (state = {}, action) => {
