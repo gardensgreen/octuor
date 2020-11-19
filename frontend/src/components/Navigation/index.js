@@ -3,7 +3,47 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
+import styled from "styled-components";
 
+const Nav = styled.ul`
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 10px;
+    margin: 0px;
+    justify-content: space-between;
+    background-color: #1f2933;
+`;
+
+const NavItem = styled.li`
+    box-sizing: border-box;
+    padding-right: 10px;
+`;
+
+const PageLinks = styled.ul`
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: 0px;
+`;
+
+const AuthLinks = styled.ul`
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: 0px;
+    justify-content: space-around;
+`;
+
+const Logo = styled.img`
+    max-width: 150px;
+    max-height: 60px;
+`;
+
+const NavContent = styled.span`
+    text-decoration: none;
+    color: #f6f7f9;
+`;
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector((state) => state.session.user);
 
@@ -12,22 +52,34 @@ function Navigation({ isLoaded }) {
         sessionLinks = <ProfileButton user={sessionUser} />;
     } else {
         sessionLinks = (
-            <>
-                <LoginFormModal />
-                <NavLink to="/signup">Sign Up</NavLink>
-            </>
+            <AuthLinks>
+                <NavItem>
+                    <NavLink style={{ textDecoration: "none" }} to="/signup">
+                        <NavContent>Sign Up</NavContent>
+                    </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink style={{ textDecoration: "none" }} to="/login">
+                        <NavContent>Log In</NavContent>
+                    </NavLink>
+                </NavItem>
+            </AuthLinks>
         );
     }
 
     return (
-        <ul>
-            <li>
-                <NavLink exact to="/">
-                    Home
-                </NavLink>
-                {isLoaded && sessionLinks}
-            </li>
-        </ul>
+        <Nav>
+            <PageLinks>
+                <NavItem>
+                    <NavLink exact to="/">
+                        <Logo
+                            src={window.location.origin + "/octuorLogo.png"}
+                        />
+                    </NavLink>
+                </NavItem>
+            </PageLinks>
+            {isLoaded && sessionLinks}
+        </Nav>
     );
 }
 
