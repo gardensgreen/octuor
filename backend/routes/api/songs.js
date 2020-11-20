@@ -14,7 +14,8 @@ const router = express.Router();
 
 router.post(
     "/",
-    multipleMulterUpload(["image", "Audio"]),
+    requireAuth,
+    multipleMulterUpload(["image", "audio"]),
     asyncHandler(async (req, res) => {
         const songData = req.body;
         userData.image = await multiplePublicFileUpload([req.img, req.audio]);
