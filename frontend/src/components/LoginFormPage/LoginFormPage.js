@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import LoginForm from "../LoginFormPage/LoginForm";
@@ -20,11 +21,21 @@ const PageTitle = styled.h1`
     color: #f5f7f9;
 `;
 
+const SignUpLink = styled(NavLink)`
+    color: #9ea5ad;
+    margin-bottom: 10px;
+    font-size: 0.7rem;
+    margin-top: 20px;
+`;
+
 export default function LoginFormPage() {
     return (
         <PageContainer>
             <PageTitle>To Continue, log in to Octour.</PageTitle>
             <LoginForm />
+            <SignUpLink to="/signup">
+                Don't have an account? <u>Click this link.</u>
+            </SignUpLink>
         </PageContainer>
     );
 }

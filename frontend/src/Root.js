@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 
+import LandingPage from "./components/LandingPage/LandingPage";
 import SignupFormPage from "./components/SignUpFormPage/SignUpFormPage";
 import LoginFormPage from "./components/LoginFormPage/LoginFormPage";
 import Navigation from "./components/Navigation";
@@ -25,6 +26,9 @@ function Root() {
             <Navigation isLoaded={isLoaded} />
             {isLoaded && (
                 <Switch>
+                    <Route exact path="/">
+                        <LandingPage />
+                    </Route>
                     <Route path="/login">
                         <LoginFormPage />
                     </Route>
