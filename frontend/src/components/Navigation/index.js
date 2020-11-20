@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
-import LoginFormModal from "../LoginFormModal";
+
 import styled from "styled-components";
 
 const Nav = styled.ul`
@@ -36,6 +36,7 @@ const AuthLinks = styled.ul`
 `;
 
 const Logo = styled.img`
+    margin-top: 5px;
     max-width: 150px;
     max-height: 60px;
 `;
