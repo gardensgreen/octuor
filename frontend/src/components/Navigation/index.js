@@ -17,7 +17,7 @@ const Nav = styled.ul`
 
 const NavItem = styled.li`
     box-sizing: border-box;
-    padding-right: 10px;
+    padding-right: 30px;
 `;
 
 const PageLinks = styled.ul`
@@ -55,12 +55,18 @@ function Navigation({ isLoaded }) {
         sessionLinks = (
             <AuthLinks>
                 <NavItem>
-                    <NavLink style={{ textDecoration: "none" }} to="/signup">
+                    <NavLink
+                        style={{ textDecoration: "none", fontSize: ".9rem" }}
+                        to="/signup"
+                    >
                         <NavContent>Sign Up</NavContent>
                     </NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink style={{ textDecoration: "none" }} to="/login">
+                    <NavLink
+                        style={{ textDecoration: "none", fontSize: ".9rem" }}
+                        to="/login"
+                    >
                         <NavContent>Log In</NavContent>
                     </NavLink>
                 </NavItem>

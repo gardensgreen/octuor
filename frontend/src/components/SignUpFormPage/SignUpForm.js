@@ -113,7 +113,7 @@ function SignupForm() {
                     required
                 />
             </InputContainer>
-            <SignupButton type="submit">Sign Up</SignupButton>
+            <SignupButton type="submit">SIGN UP</SignupButton>
         </StyledForm>
     );
 }
