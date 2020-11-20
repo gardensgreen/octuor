@@ -1,55 +1,30 @@
-import React, { useState } from "react";
-import * as sessionActions from "../../store/session";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import React from "react";
+import styled from "styled-components";
 
-function LoginFormPage() {
-    const dispatch = useDispatch();
-    const sessionUser = useSelector((state) => state.session.user);
-    const [credential, setCredential] = useState("");
-    const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState([]);
+import LoginForm from "../LoginFormPage/LoginForm";
 
-    if (sessionUser) return <Redirect to="/" />;
+const PageContainer = styled.div`
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+`;
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setErrors([]);
-        return dispatch(
-            sessionActions.loginUser({ credential, password })
-        ).catch((res) => {
-            if (res.data && res.data.errors) setErrors(res.data.errors);
-        });
-    };
+const PageTitle = styled.h1`
+    display: inline;
+    font-size: 0.7rem;
+    margin-top: 40px;
+    margin-bottom: -5px;
+    color: #f5f7f9;
+`;
 
+export default function LoginFormPage() {
     return (
-        <form onSubmit={handleSubmit}>
-            <ul>
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-            </ul>
-            <label>
-                Username or Email
-                <input
-                    type="text"
-                    value={credential}
-                    onChange={(e) => setCredential(e.target.value)}
-                    required
-                />
-            </label>
-            <label>
-                Password
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </label>
-            <button type="submit">Log In</button>
-        </form>
+        <PageContainer>
+            <PageTitle>To Continue, log in to Octour.</PageTitle>
+            <LoginForm />
+        </PageContainer>
     );
 }
-
-export default LoginFormPage;
