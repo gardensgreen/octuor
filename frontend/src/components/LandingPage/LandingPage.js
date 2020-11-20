@@ -22,6 +22,7 @@ const VideoBackground = styled.video`
 
 const LandingPageContainer = styled.div`
     display: flex;
+    margin-top: 100px;
 `;
 
 const Left = styled.div`
