@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const VideoOverLay = styled.div`
     position: fixed;
-    top: 80px;
+
     right: 0;
     bottom: 0;
     min-width: 100%;
@@ -13,7 +13,7 @@ const VideoOverLay = styled.div`
 `;
 const VideoBackground = styled.video`
     position: fixed;
-    top: 80px;
+
     right: 0;
     bottom: 0;
     min-width: 100%;
@@ -90,7 +90,7 @@ export default function LandingPage() {
             <VideoOverLay></VideoOverLay>
             <LandingPageContainer>
                 <Left>
-                    <Header>Sharing is Everything.</Header>
+                    <Header>Sharing is everything.</Header>
                     <LandingContent>Listening is just a plus.</LandingContent>
                     <ButtonContainer>
                         <LandingButton

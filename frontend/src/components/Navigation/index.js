@@ -12,12 +12,14 @@ const Nav = styled.ul`
     padding: 10px;
     margin: 0px;
     justify-content: space-between;
-    background-color: #1f2933;
+    background-color: transparent;
+    z-index: 1;
 `;
 
 const NavItem = styled.li`
     box-sizing: border-box;
     padding-right: 30px;
+    z-index: 1;
 `;
 
 const PageLinks = styled.ul`
@@ -39,6 +41,7 @@ const Logo = styled.img`
     margin-top: 5px;
     max-width: 150px;
     max-height: 60px;
+    padding-left: 50px;
 `;
 
 const NavContent = styled.span`
