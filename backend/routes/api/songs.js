@@ -1,7 +1,10 @@
 const express = require("express");
 const { check } = require("express-validator");
 const asyncHandler = require("express-async-handler");
-import { multipleMulterUpload, multiplePublicFileUpload } from "../../awsS3";
+const {
+    multipleMulterUpload,
+    multiplePublicFileUpload,
+} = require("../../awsS3");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
@@ -21,4 +24,4 @@ router.post(
     })
 );
 
-export default router;
+module.exports = router;
