@@ -20,3 +20,5 @@ router.post(
         res.json(song);
     })
 );
+
+export default router;
