@@ -48,6 +48,11 @@ const NavContent = styled.span`
     text-decoration: none;
     color: #f6f7f9;
 `;
+
+const Link = styled.a`
+    text-decoration: none;
+    font-size: 0.9rem;
+`;
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector((state) => state.session.user);
 
@@ -57,6 +62,16 @@ function Navigation({ isLoaded }) {
     } else {
         sessionLinks = (
             <AuthLinks>
+                <NavItem>
+                    <Link href="https://github.com/gardensgreen/octour/">
+                        <NavContent>Github</NavContent>
+                    </Link>
+                </NavItem>
+                <NavItem>
+                    <Link href="https://linkedin.com/in/danieltillero/">
+                        <NavContent>LinkedIn</NavContent>
+                    </Link>
+                </NavItem>
                 <NavItem>
                     <NavLink
                         style={{ textDecoration: "none", fontSize: ".9rem" }}
