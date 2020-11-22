@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     Song.init(
         {
             title: { type: DataTypes.STRING(40), allowNull: false },
-            songUrl: { type: DataTypes.STRING, allowNull: false },
-            artworkUrl: { type: DataTypes.STRING },
+            audio: { type: DataTypes.STRING, allowNull: false },
+            artwork: { type: DataTypes.STRING },
             userId: { type: DataTypes.INTEGER, allowNull: false },
         },
         {

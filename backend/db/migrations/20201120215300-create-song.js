@@ -12,11 +12,11 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.STRING,
             },
-            songUrl: {
+            audio: {
                 allowNull: false,
                 type: Sequelize.STRING,
             },
-            artworkUrl: {
+            artwork: {
                 type: Sequelize.STRING,
             },
             userId: {

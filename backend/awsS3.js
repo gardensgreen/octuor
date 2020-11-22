@@ -1,6 +1,6 @@
 const AWS = require("aws-sdk");
 // name of your bucket here
-const NAME_OF_BUCKET = "aws-s3-octour";
+const NAME_OF_BUCKET = "octour";
 const multer = require("multer");
 
 if (process.env.NODE_ENV !== "production") {

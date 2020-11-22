@@ -1,33 +1,28 @@
-import fetch from "./csrf";
+import axios from "axios";
 
 export const RECEIVE_SONG = "RECEIVE_SONG";
 
-export const createSong = (song) => async (dispatch) => {
-    const { imageUrl, audioUrl, title, userId } = song;
+export const createSong = (song) => (dispatch) => {
+    const { audio, title, userId } = song;
     const formData = new FormData();
     formData.append("title", title);
-    formData.append("userId", userId);
+    formData.append("userId", parseInt(userId, 10));
 
-    if (imageUrl) formData.append("imageUrl", imageUrl);
-    if (audioUrl) formData.append("imageUrl", imageUrl);
+    // for multiple files
+
+    // for single file
+
+    if (audio) formData.append("audio", audio);
 
     const config = {
         headers: {
-            "Content-Type": "multipart/form-data",
+            "content-type": "multipart/form-data",
         },
-        body: formData,
-        method: "POST",
     };
-    try {
-        const res = await fetch("/api/songs", config);
 
-        const { song } = res.data;
-
-        dispatch({
-            type: RECEIVE_SONG,
-            song,
-        });
-    } catch (err) {
-        console.error(err);
-    }
+    return axios.post("/api/songs", formData, config).then((res) => {
+        console.log(res);
+        const song = res.data;
+        return dispatch({ type: RECEIVE_SONG, song });
+    });
 };
