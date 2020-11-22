@@ -1,5 +1,5 @@
 backend/.env
-backend/credentials.json
+backend/credentiales.json
 frontend/.env
 backend/node_modules
 frontend/node_modules

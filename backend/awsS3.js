@@ -4,7 +4,7 @@ const NAME_OF_BUCKET = "aws-s3-octour";
 const multer = require("multer");
 
 if (process.env.NODE_ENV !== "production") {
-    AWS.config.loadFromPath("./credentials.json");
+    AWS.config.loadFromPath("./credentiales.json");
 }
 // else {
 //  make sure to set environment variables in production for:
