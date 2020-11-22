@@ -8,7 +8,7 @@ const {
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User } = require("../../db/models");
+const { Song } = require("../../db/models");
 
 const router = express.Router();
 
@@ -18,9 +18,12 @@ router.post(
     multipleMulterUpload(["image", "audio"]),
     asyncHandler(async (req, res) => {
         const songData = req.body;
-        userData.image = await multiplePublicFileUpload([req.img, req.audio]);
-        const song = new song(songData);
-        await user.save();
+        userData.image = await multiplePublicFileUpload([
+            req.imageUrl,
+            req.audioUrl,
+        ]);
+        const song = new Song(songData);
+        await song.save();
         res.json(song);
     })
 );

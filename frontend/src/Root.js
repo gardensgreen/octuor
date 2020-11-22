@@ -8,6 +8,7 @@ import SignupFormPage from "./components/SignUpFormPage/SignUpFormPage";
 import LoginFormPage from "./components/LoginFormPage/LoginFormPage";
 import Navigation from "./components/Navigation";
 import * as sessionActions from "./store/session";
+import UploadSongPage from "./components/UploadSongPage/UploadSongPage";
 
 const RootContainer = styled.div`
     background-color: #323f4b;
@@ -36,6 +37,9 @@ function Root() {
                     <Route path="/signup">
                         <Navigation isLoaded={isLoaded} />
                         <SignupFormPage />
+                    </Route>
+                    <Route path="/songs/new">
+                        <UploadSongPage />
                     </Route>
                 </Switch>
             )}
