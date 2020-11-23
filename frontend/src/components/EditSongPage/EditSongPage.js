@@ -22,7 +22,7 @@ export default function EditSongPage({ song }) {
     return (
         <PageContainer>
             <PageTitle>Edit your song's details to share it.</PageTitle>
-            <EditSongForm song={song} />
+            <EditSongForm />
         </PageContainer>
     );
 }

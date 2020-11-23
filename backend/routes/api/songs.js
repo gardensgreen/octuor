@@ -30,19 +30,33 @@ router.post(
     })
 );
 
+router.get(
+    "/:id",
+    asyncHandler(async (req, res) => {
+        const songId = parseInt(req.params.id, 10);
+        const song = await Song.findByPk(songId);
+
+        res.json(song);
+    })
+);
+
 router.put(
-    "/",
+    "/:id",
     requireAuth,
-    singleMulterUpload("image"),
+    singleMulterUpload("artwork"),
     asyncHandler(async (req, res, next) => {
+        const songId = parseInt(req.params.id, 10);
         const songData = req.body;
-        songData.artwork = await singlePublicFileUpload(req.file);
-        const song = await db.Song.findByPk(songId);
+
+        const song = await Song.findByPk(songId);
 
         if (song) {
+            if (req.file) {
+                songData.artwork = await singlePublicFileUpload(req.file);
+            }
             await song.update({
                 title: songData.title,
-                artwork: songData.content,
+                artwork: songData.artwork,
             });
         } else {
             next(songNotFoundError(songId));
