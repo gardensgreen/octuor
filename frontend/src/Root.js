@@ -7,8 +7,10 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import SignupFormPage from "./components/SignUpFormPage/SignUpFormPage";
 import LoginFormPage from "./components/LoginFormPage/LoginFormPage";
 import Navigation from "./components/Navigation";
-import * as sessionActions from "./store/session";
 import UploadSongPage from "./components/UploadSongPage/UploadSongPage";
+import EditSongPage from "./components/EditSongPage/EditSongPage";
+
+import * as sessionActions from "./store/session";
 
 const RootContainer = styled.div`
     background-color: #323f4b;
@@ -40,6 +42,9 @@ function Root() {
                     </Route>
                     <Route path="/songs/new">
                         <UploadSongPage />
+                    </Route>
+                    <Route path="/songs/:songId/edit">
+                        <EditSongPage />
                     </Route>
                 </Switch>
             )}

@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { createSong } from "../../store/song";
-import { motion } from "framer-motion";
+import { useState, useRef } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import styled from "styled-components";
+import fetch from "../../store/csrf";
 
 const StyledForm = styled.form`
     display: flex;
@@ -65,21 +65,43 @@ const UploadButton = styled.div`
 export default function UploadSongForm(props) {
     const [title, setTitle] = useState("");
     const [audio, setAudio] = useState(null);
+    const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(null);
 
     const user = useSelector((state) => {
         return state.session.user;
     });
-    const dispatch = useDispatch();
 
-    const handleSubmit = (e) => {
+    const history = useHistory();
+
+    if (!user) history.push("/login");
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrors([]);
         setLoading(true);
-        dispatch(createSong({ title, audio, userId: user.id })).then(() => {
-            setTitle("");
-            setAudio(null);
-            setLoading(false);
-        });
+        try {
+            const formData = new FormData();
+            formData.append("title", title);
+            formData.append("userId", parseInt(user.id, 10));
+            formData.append(
+                "artwork",
+                window.location.origin + "/artworkPlaceholder.png"
+            );
+
+            if (audio) formData.append("audio", audio);
+            // console.log(formData.get("audio"));
+            const res = await fetch("/api/songs", {
+                method: "POST",
+                body: formData,
+            });
+
+            const song = res.data;
+
+            if (song) history.push(`/songs/${song.id}/edit`);
+        } catch (err) {
+            console.error(err);
+        }
     };
     const uploadInput = useRef(null);
 
@@ -108,12 +130,18 @@ export default function UploadSongForm(props) {
     return (
         <div>
             <StyledForm onSubmit={handleSubmit}>
+                <ul>
+                    {errors.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                    ))}
+                </ul>
                 <InputContainer>
                     <LabelSpan>Song Title</LabelSpan>
                     <Input
                         type="text"
                         value={title}
                         onChange={updateTitleVal}
+                        required
                     />
                 </InputContainer>
                 <UploadButton onClick={handleClick}>
@@ -126,6 +154,7 @@ export default function UploadSongForm(props) {
                         type="file"
                         name="audio"
                         onChange={updateFile}
+                        required
                     />
                 </InputContainer>
                 <SubmitButton type="submit">SUBMIT</SubmitButton>
