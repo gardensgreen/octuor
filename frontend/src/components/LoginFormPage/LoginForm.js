@@ -74,7 +74,7 @@ const Input = styled.input`
     box-shadow: rgba(149, 157, 165, 0.15) 0px 8px 24px;
 `;
 
-const LogInButton = styled.button`
+const LogInButton = styled.input`
     margin-top: 20px;
     background-color: #c054eb;
     border: 0px;
