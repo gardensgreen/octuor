@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import fetch from "../../store/csrf";
-
-import "./Profile.css";
 
 const Header = styled.div`
     display: flex;
@@ -21,15 +20,15 @@ const ProfileName = styled.h2`
     font-size: 90px;
 
     margin-left: 20px;
-    margin-top: 20px;
     margin-bottom: 20px;
+    margin-top: 20px;
     color: #f5f7f9;
 `;
 
 const ProfileExtra = styled.h3`
     display: block;
     font-size: 12px;
-    margin-top: 20px;
+
     margin-left: 20px;
     color: #9ea5ad;
 `;
@@ -46,7 +45,8 @@ const Avatar = styled.img`
 const Main = styled.div`
     display: flex;
     padding: 30px;
-    height: 100%;
+    margin-bottom: 0px;
+    background-color: #323f4b;
 `;
 
 const Section = styled.div`
@@ -69,6 +69,7 @@ const Song = styled.div`
     padding: 10px;
     background-color: rgba(31, 41, 51, 0.57);
     border-radius: 3px;
+    margin-right: 20px;
 `;
 
 const Artwork = styled.img`
@@ -98,10 +99,28 @@ const SectionContent = styled.div`
     overflow-x: scroll;
     display: flex;
     flex-direction: row;
+    flex-wrap: row;
     margin-bottom: 0px;
 `;
 
-export default function MyProfile({ userId }) {
+const EditButton = styled(NavLink)`
+    margin-top: 20px;
+    background-color: #c054eb;
+    border: 0px;
+    width: 200px;
+    height: 33.33px;
+    letter-spacing: 0.1rem;
+    color: #f5f7f9;
+    border-radius: 50px;
+    box-shadow: rgba(149, 157, 165, 0.15) 0px 8px 24px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+export default function OtherProfile({ userId }) {
     const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(false);
     const [songs, setSongs] = useState([]);

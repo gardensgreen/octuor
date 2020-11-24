@@ -1,7 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import styled from "styled-components";
 import MyProfile from "./MyProfile";
+import OtherProfile from "./OtherProfile";
 
 export default function ProfilePage() {
     const user = useSelector((state) => {
@@ -14,8 +16,8 @@ export default function ProfilePage() {
         history.push("/login");
         return null;
     } else if (user.id === parseInt(userId, 10)) {
-        return <MyProfile user={user}></MyProfile>;
+        return <MyProfile userId={userId}></MyProfile>;
     } else {
-        return <div>Not your account</div>;
+        return <OtherProfile userId={userId}></OtherProfile>;
     }
 }

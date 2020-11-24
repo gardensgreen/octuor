@@ -5,7 +5,7 @@ const { singleMulterUpload, singlePublicFileUpload } = require("../../awsS3");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { Song } = require("../../db/models");
+const { User, Song } = require("../../db/models");
 
 const router = express.Router();
 
@@ -24,6 +24,7 @@ router.get(
             where: {
                 userId: userId,
             },
+            include: User,
         });
 
         res.json(songs);
