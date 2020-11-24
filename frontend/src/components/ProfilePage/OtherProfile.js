@@ -3,7 +3,13 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import fetch from "../../store/csrf";
 import Loader from "../Loader/Loader";
+import { Player } from "../Player/Player";
+import "./Profile.css";
 
+const ProfileContainer = styled.div`
+    grid-area: main-view;
+    overflow-y: scroll;
+`;
 const Header = styled.div`
     display: flex;
     background: #3e4c59;
@@ -48,6 +54,7 @@ const Main = styled.div`
     padding: 30px;
     margin-bottom: 0px;
     background-color: #323f4b;
+    flex-direction: column;
 `;
 
 const Section = styled.div`
@@ -106,9 +113,11 @@ const SectionContent = styled.div`
 
 export default function OtherProfile({ userId }) {
     const [errors, setErrors] = useState([]);
+    const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
     const [loading, setLoading] = useState(false);
     const [songs, setSongs] = useState([]);
     const [profile, setProfile] = useState({});
+    const [user, setUser] = useState({});
 
     useEffect(() => {
         const fetchMySongs = async (userId) => {
@@ -131,39 +140,87 @@ export default function OtherProfile({ userId }) {
         fetchMySongs(userId);
     }, []);
 
+    useEffect(() => {
+        const fetchUser = async (userId) => {
+            try {
+                setLoading(true);
+                const res = await fetch(`/api/users/${userId}`);
+
+                const user = res.data;
+
+                if (user) setUser(user);
+
+                setLoading(false);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        fetchUser(userId);
+    }, []);
+
+    const handleClick = (e, song) => {
+        e.preventDefault();
+        setCurrentlyPlaying(song);
+    };
+
     return (
         <>
-            <Header>
-                <Avatar
-                    src={window.location.origin + "/artworkPlaceholder.png"}
+            <ProfileContainer>
+                <Header>
+                    <Avatar
+                        src={window.location.origin + "/artworkPlaceholder.png"}
+                    />
+                    <ProfileDetail>
+                        <ProfileName>{profile.username}</ProfileName>
+                        <ProfileExtra>
+                            {songs.length} uploaded songs
+                        </ProfileExtra>
+                    </ProfileDetail>
+                </Header>
+                <Main>
+                    <Section>
+                        <SectionTitle>Uploaded Songs</SectionTitle>
+                        <SectionContent>
+                            {loading ? (
+                                <Loader></Loader>
+                            ) : songs[0] ? (
+                                songs.map((song) => (
+                                    <Song
+                                        key={song.id}
+                                        onClick={(e) =>
+                                            handleClick(e, {
+                                                audio: song.audio,
+                                                title: song.title,
+                                                artwork: song.artwork,
+                                            })
+                                        }
+                                    >
+                                        <Artwork
+                                            src={song.artwork}
+                                            alt="artwork"
+                                        />
+                                        <SongTitle>{song.title}</SongTitle>
+                                        <SongArtist>
+                                            {song.User.username}
+                                        </SongArtist>
+                                    </Song>
+                                ))
+                            ) : (
+                                <div>No songs</div>
+                            )}
+                        </SectionContent>
+                    </Section>
+                </Main>
+            </ProfileContainer>
+
+            {currentlyPlaying ? (
+                <Player
+                    streamUrl={currentlyPlaying.audio}
+                    trackTitle={currentlyPlaying.title}
+                    preloadType="auto"
                 />
-                <ProfileDetail>
-                    <ProfileName>{profile.username}</ProfileName>
-                    <ProfileExtra>{songs.length} uploaded songs</ProfileExtra>
-                </ProfileDetail>
-            </Header>
-            <Main>
-                <Section>
-                    <SectionTitle>Uploaded Songs</SectionTitle>
-                    <SectionContent>
-                        {loading ? (
-                            <Loader></Loader>
-                        ) : songs[0] ? (
-                            songs.map((song) => (
-                                <Song key={song.id}>
-                                    <Artwork src={song.artwork} alt="artwork" />
-                                    <SongTitle>{song.title}</SongTitle>
-                                    <SongArtist>
-                                        {song.User.username}
-                                    </SongArtist>
-                                </Song>
-                            ))
-                        ) : (
-                            <div>No songs</div>
-                        )}
-                    </SectionContent>
-                </Section>
-            </Main>
+            ) : null}
         </>
     );
 }

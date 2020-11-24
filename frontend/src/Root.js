@@ -21,6 +21,7 @@ const RootContainer = styled.div`
 function Root() {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
+
     useEffect(() => {
         dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     }, [dispatch]);
@@ -28,29 +29,33 @@ function Root() {
     return (
         <RootContainer>
             {isLoaded && (
-                <Switch>
-                    <Route exact path="/">
-                        <Navigation isLoaded={isLoaded} />
-                        <LandingPage />
-                    </Route>
-                    <Route path="/login">
-                        <Navigation isLoaded={isLoaded} />
-                        <LoginFormPage />
-                    </Route>
-                    <Route path="/signup">
-                        <Navigation isLoaded={isLoaded} />
-                        <SignupFormPage />
-                    </Route>
-                    <Route path="/songs/new">
-                        <UploadSongPage />
-                    </Route>
-                    <Route path="/songs/:songId/edit">
-                        <EditSongPage />
-                    </Route>
-                    <Route path="/users/:userId">
-                        <ProfilePage />
-                    </Route>
-                </Switch>
+                <>
+                    <Switch>
+                        <Route exact path="/">
+                            <Navigation isLoaded={isLoaded} />
+                            <LandingPage />
+                        </Route>
+                        <Route path="/login">
+                            <Navigation isLoaded={isLoaded} />
+                            <LoginFormPage />
+                        </Route>
+                        <Route path="/signup">
+                            <Navigation isLoaded={isLoaded} />
+                            <SignupFormPage />
+                        </Route>
+                    </Switch>
+                    <Switch>
+                        <Route path="/songs/new">
+                            <UploadSongPage />
+                        </Route>
+                        <Route path="/songs/:songId/edit">
+                            <EditSongPage />
+                        </Route>
+                        <Route path="/users/:userId">
+                            <ProfilePage />
+                        </Route>
+                    </Switch>
+                </>
             )}
         </RootContainer>
     );
