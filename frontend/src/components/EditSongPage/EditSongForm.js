@@ -63,12 +63,37 @@ const UploadButton = styled.img`
     font-weight: bold;
 `;
 
+const DividerContainer = styled.div`
+    width: 400px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+`;
+
+const Divider = styled.div`
+    border-top: 1px solid #9ea5ad;
+    display: block;
+    line-height: 1px;
+    margin: 15px 0;
+    position: relative;
+    text-align: center;
+`;
+
+const DividerTitle = styled.strong`
+    background-color: #323f4b;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 0 20px;
+    color: #9ea5ad;
+    text-transform: uppercase;
+`;
+
 export default function EditSongForm() {
     const [title, setTitle] = useState("");
     const [artwork, setArtwork] = useState(null);
 
     const [errors, setErrors] = useState([]);
-    const [loading, setLoading] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [imageLoading, setImageLoading] = useState(false);
 
     const user = useSelector((state) => {
         return state.session.user;
@@ -79,18 +104,22 @@ export default function EditSongForm() {
     useEffect(() => {
         const getSong = async (songId) => {
             try {
+                setLoading(true);
                 const res = await fetch(`/api/songs/${songId}`);
                 const song = res.data;
 
                 if (song && song.userId === user.id) {
                     setArtwork(song.artwork);
                     setTitle(song.title);
+                    setLoading(false);
                 } else {
                     history.push("/");
                 }
             } catch (err) {
                 console.error(err);
             }
+
+            return () => {};
         };
         getSong(songId);
     }, [songId]);
@@ -98,6 +127,7 @@ export default function EditSongForm() {
     useEffect(() => {
         const updateSong = async (songId) => {
             try {
+                setImageLoading(true);
                 const formData = new FormData();
                 formData.append("title", title);
                 if (artwork) formData.append("artwork", artwork);
@@ -108,6 +138,7 @@ export default function EditSongForm() {
                 });
                 const song = res.data;
                 setArtwork(song.artwork);
+                setImageLoading(false);
             } catch (err) {
                 console.error(err);
             }
@@ -171,9 +202,18 @@ export default function EditSongForm() {
                 <InputContainer>
                     <LabelSpan>Song Artwork</LabelSpan>
                     <ImageContainer>
-                        <UploadButton src={artwork} onClick={handleClick} />
+                        {imageLoading ? (
+                            <Loader />
+                        ) : (
+                            <UploadButton src={artwork} onClick={handleClick} />
+                        )}
                     </ImageContainer>
                 </InputContainer>
+                <DividerContainer>
+                    <Divider>
+                        <DividerTitle>Details</DividerTitle>
+                    </Divider>
+                </DividerContainer>
                 <InputContainer>
                     <LabelSpan>Song Title</LabelSpan>
                     <Input

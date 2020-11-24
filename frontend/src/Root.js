@@ -11,6 +11,7 @@ import UploadSongPage from "./components/UploadSongPage/UploadSongPage";
 import EditSongPage from "./components/EditSongPage/EditSongPage";
 
 import * as sessionActions from "./store/session";
+import ProfilePage from "./components/ProfilePage/ProfilePage";
 
 const RootContainer = styled.div`
     background-color: #323f4b;
@@ -45,6 +46,9 @@ function Root() {
                     </Route>
                     <Route path="/songs/:songId/edit">
                         <EditSongPage />
+                    </Route>
+                    <Route path="/users/:userId">
+                        <ProfilePage />
                     </Route>
                 </Switch>
             )}

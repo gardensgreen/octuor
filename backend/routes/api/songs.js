@@ -40,6 +40,15 @@ router.get(
     })
 );
 
+router.get(
+    "/",
+    asyncHandler(async (req, res) => {
+        const songs = await Song.findAll();
+
+        res.json(songs);
+    })
+);
+
 router.put(
     "/:id",
     requireAuth,
