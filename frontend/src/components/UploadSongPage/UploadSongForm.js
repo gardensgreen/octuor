@@ -100,7 +100,8 @@ export default function UploadSongForm(props) {
 
             if (song) history.push(`/songs/${song.id}/edit`);
         } catch (err) {
-            console.error(err);
+            setLoading(false);
+            setErrors([err.data.message]);
         }
     };
     const uploadInput = useRef(null);

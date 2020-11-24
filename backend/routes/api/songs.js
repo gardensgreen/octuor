@@ -28,10 +28,10 @@ router.post(
     requireAuth,
     singleMulterUpload("audio"),
     asyncHandler(async (req, res, next) => {
-        if (req.mimetype !== "audio/mpeg") {
-            next(notValidMP3());
+        console.log(req.file.mimetype);
+        if (req.file.mimetype !== "audio/mpeg") {
+            return next(notValidMP3());
         }
-        console.log(req.body);
         const songData = req.body;
         songData.audio = await singlePublicFileUpload(req.file);
         const song = new Song(songData);
@@ -64,6 +64,9 @@ router.put(
     requireAuth,
     singleMulterUpload("artwork"),
     asyncHandler(async (req, res, next) => {
+        if (req.mimetype !== "audio/mpeg") {
+            next(notValidMP3());
+        }
         const songId = parseInt(req.params.id, 10);
         const songData = req.body;
 
