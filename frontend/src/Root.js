@@ -31,17 +31,15 @@ function Root() {
         <RootContainer>
             {isLoaded && (
                 <>
+                    <Navigation isLoaded={isLoaded} />
                     <Switch>
                         <Route exact path="/">
-                            <Navigation isLoaded={isLoaded} />
                             <LandingPage />
                         </Route>
                         <Route path="/login">
-                            <Navigation isLoaded={isLoaded} />
                             <LoginFormPage />
                         </Route>
                         <Route path="/signup">
-                            <Navigation isLoaded={isLoaded} />
                             <SignupFormPage />
                         </Route>
                     </Switch>

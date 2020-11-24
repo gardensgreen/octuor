@@ -14,6 +14,7 @@ const Nav = styled.ul`
     justify-content: space-between;
     background-color: transparent;
     z-index: 1;
+    grid-area: top-nav;
 `;
 
 const NavItem = styled.li`
@@ -30,6 +31,7 @@ const PageLinks = styled.ul`
 `;
 
 const AuthLinks = styled.ul`
+    margin-top: 15px;
     list-style: none;
     display: flex;
     align-items: center;
@@ -38,10 +40,10 @@ const AuthLinks = styled.ul`
 `;
 
 const Logo = styled.img`
-    margin-top: 5px;
-    max-width: 150px;
-    max-height: 60px;
-    padding-left: 50px;
+    margin-top: 15px;
+    max-width: 200px;
+    padding-left: 30px;
+    max-height: 70px;
 `;
 
 const NavContent = styled.span`
@@ -58,7 +60,7 @@ function Navigation({ isLoaded }) {
 
     let sessionLinks;
     if (sessionUser) {
-        sessionLinks = <ProfileButton user={sessionUser} />;
+        return <ProfileButton user={sessionUser} />;
     } else {
         sessionLinks = (
             <AuthLinks>

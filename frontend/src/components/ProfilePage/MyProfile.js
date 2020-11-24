@@ -13,6 +13,7 @@ const ProfileContainer = styled.div`
 `;
 const Header = styled.div`
     display: flex;
+
     background: #3e4c59;
     padding: 30px;
 `;
@@ -75,9 +76,12 @@ const Song = styled.div`
     display: flex;
     flex-direction: column;
     padding: 10px;
-    margin-right: 10px;
+    margin-right: 20px;
     background-color: rgba(31, 41, 51, 0.57);
     border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 `;
 
 const Artwork = styled.img`
@@ -115,6 +119,7 @@ const ActionContainer = styled.div`
     margin-top: 10px;
     display: flex;
     background-color: #32;
+    padding-bottom: 10px;
 `;
 
 const EditSongButton = styled(NavLink)`
@@ -124,13 +129,15 @@ const EditSongButton = styled(NavLink)`
     letter-spacing: 0.1rem;
     color: #f5f7f9;
     border-radius: 50px;
-    box-shadow: rgba(149, 157, 165, 0.15) 0px 8px 24px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     font-size: 0.7rem;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
-
+    text-decoration: none;
     width: 50px;
     height: 10px;
 `;
@@ -142,7 +149,9 @@ const DeleteSongButton = styled.button`
     letter-spacing: 0.1rem;
     color: #f5f7f9;
     border-radius: 50px;
-    box-shadow: rgba(149, 157, 165, 0.15) 0px 8px 24px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     font-size: 0.7rem;
     font-weight: bold;
     display: flex;
@@ -241,7 +250,12 @@ export default function MyProfile({ userId }) {
                                             src={song.artwork}
                                             alt="artwork"
                                         />
-                                        <SongTitle>{song.title}</SongTitle>
+                                        <SongTitle>
+                                            {song.title.length > 10
+                                                ? song.title.slice(0, 10) +
+                                                  "..."
+                                                : song.title}
+                                        </SongTitle>
                                         <SongArtist>
                                             {song.User.username}
                                         </SongArtist>

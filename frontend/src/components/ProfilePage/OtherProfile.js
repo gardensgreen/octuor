@@ -78,6 +78,9 @@ const Song = styled.div`
     background-color: rgba(31, 41, 51, 0.57);
     border-radius: 3px;
     margin-right: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 `;
 
 const Artwork = styled.img`
@@ -202,7 +205,12 @@ export default function OtherProfile({ userId }) {
                                             src={song.artwork}
                                             alt="artwork"
                                         />
-                                        <SongTitle>{song.title}</SongTitle>
+                                        <SongTitle>
+                                            {song.title.length > 10
+                                                ? song.title.slice(0, 10) +
+                                                  "..."
+                                                : song.title}
+                                        </SongTitle>
                                         <SongArtist>
                                             {song.User.username}
                                         </SongArtist>

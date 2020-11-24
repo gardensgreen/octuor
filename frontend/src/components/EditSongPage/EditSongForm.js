@@ -30,7 +30,9 @@ const Input = styled.input`
     border: 0.5px solid #616e7c;
     height: 33.33px;
     border-radius: 3px;
-    box-shadow: rgba(149, 157, 165, 0.15) 0px 8px 24px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     color: #f5f7f9;
 `;
 
@@ -42,7 +44,9 @@ const SubmitButton = styled.button`
     letter-spacing: 0.1rem;
     color: #f5f7f9;
     border-radius: 50px;
-    box-shadow: rgba(149, 157, 165, 0.15) 0px 8px 24px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     font-size: 0.7rem;
     font-weight: bold;
     width: 100%;
@@ -58,7 +62,9 @@ const UploadButton = styled.img`
     letter-spacing: 0.1rem;
     color: #f5f7f9;
     border-radius: 3px;
-    box-shadow: rgba(149, 157, 165, 0.15) 0px 8px 24px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     font-size: 0.7rem;
     font-weight: bold;
 `;
@@ -113,7 +119,7 @@ export default function EditSongForm() {
                     setTitle(song.title);
                     setLoading(false);
                 } else {
-                    history.push("/");
+                    history.push(`/`);
                 }
             } catch (err) {
                 setLoading(false);
@@ -166,7 +172,7 @@ export default function EditSongForm() {
                 body: formData,
             });
             const song = res.data;
-            if (song) history.push(`/`);
+            if (song) history.push(`/users/${user.id}`);
         } catch (err) {
             setLoading(true);
             setErrors([err.data.message]);

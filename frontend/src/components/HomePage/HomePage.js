@@ -27,6 +27,7 @@ const Main = styled.div`
     background-color: #323f4b;
     grid-area: main-view;
     overflow-y: scroll;
+    margin-left: 10px;
 `;
 
 const Section = styled.div`
@@ -48,18 +49,24 @@ const Song = styled.div`
     display: flex;
     flex-direction: column;
     padding: 10px;
-    margin-right: 10px;
+    margin-right: 20px;
     background-color: rgba(31, 41, 51, 0.57);
     border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 `;
 
 const User = styled.div`
     display: flex;
     flex-direction: column;
     padding: 10px;
-    margin-right: 10px;
+    margin-right: 20px;
     background-color: rgba(31, 41, 51, 0.57);
     border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 `;
 
 const Artwork = styled.img`
