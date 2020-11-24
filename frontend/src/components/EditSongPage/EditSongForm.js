@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loader from "../Loader/Loader";
 import styled from "styled-components";
@@ -117,12 +117,14 @@ export default function EditSongForm() {
                 }
             } catch (err) {
                 setLoading(false);
-                setErrors([...errors, err.data.message]);
+                if (err.data) {
+                    setErrors([...errors, err.data.message]);
+                }
             }
-
-            return () => {};
         };
         getSong(songId);
+
+        return () => {};
     }, [songId]);
 
     useEffect(() => {
@@ -192,6 +194,7 @@ export default function EditSongForm() {
         setTitle(e.target.value);
     };
 
+    if (!user) history.push("/login");
     if (loading) return <Loader style={{ marginTop: 200 }} />;
 
     return (
