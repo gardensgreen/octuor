@@ -23,6 +23,13 @@ const notValidMP3 = () => {
     return err;
 };
 
+const notValidPic = () => {
+    const err = Error(`Supported file types for artwork: png/jpeg`);
+    err.title = "Invalid File Type for artwork.";
+    err.status = 400;
+    return err;
+};
+
 router.post(
     "/",
     requireAuth,
@@ -64,9 +71,6 @@ router.put(
     requireAuth,
     singleMulterUpload("artwork"),
     asyncHandler(async (req, res, next) => {
-        if (req.mimetype !== "audio/mpeg") {
-            next(notValidMP3());
-        }
         const songId = parseInt(req.params.id, 10);
         const songData = req.body;
 
@@ -75,6 +79,12 @@ router.put(
         if (song) {
             if (req.file) {
                 songData.artwork = await singlePublicFileUpload(req.file);
+                if (
+                    req.file.mimetype !== "image/jpeg" &&
+                    req.file.mimetype !== "image/png"
+                ) {
+                    return next(notValidPic());
+                }
             }
             await song.update({
                 title: songData.title,

@@ -116,7 +116,8 @@ export default function EditSongForm() {
                     history.push("/");
                 }
             } catch (err) {
-                console.error(err);
+                setLoading(false);
+                setErrors([...errors, err.data.message]);
             }
 
             return () => {};
@@ -140,7 +141,8 @@ export default function EditSongForm() {
                 setArtwork(song.artwork);
                 setImageLoading(false);
             } catch (err) {
-                console.error(err);
+                setImageLoading(false);
+                setErrors(...errors, [err.data.message]);
             }
         };
         if (artwork && artwork.name) {
@@ -164,7 +166,8 @@ export default function EditSongForm() {
             const song = res.data;
             if (song) history.push(`/`);
         } catch (err) {
-            console.error(err);
+            setLoading(true);
+            setErrors([err.data.message]);
         }
     };
     const uploadInput = useRef(null);
