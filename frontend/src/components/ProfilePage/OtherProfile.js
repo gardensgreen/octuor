@@ -172,7 +172,9 @@ export default function OtherProfile({ userId }) {
                         src={window.location.origin + "/artworkPlaceholder.png"}
                     />
                     <ProfileDetail>
-                        <ProfileName>{profile.username}</ProfileName>
+                        <ProfileName>
+                            {user ? user.username : loading}
+                        </ProfileName>
                         <ProfileExtra>
                             {songs.length} uploaded songs
                         </ProfileExtra>

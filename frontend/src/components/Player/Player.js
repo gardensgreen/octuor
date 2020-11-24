@@ -36,7 +36,7 @@ export const Player = withCustomAudio((props) => {
                         {...props}
                     />
                     <Progress
-                        className="mt2 pt1 rounded"
+                        className="mt2 mb2 rounded"
                         innerClassName="rounded-left"
                         value={(currentTime / duration) * 100 || 0}
                         {...props}

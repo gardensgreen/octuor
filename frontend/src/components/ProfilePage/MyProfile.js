@@ -154,7 +154,6 @@ const DeleteSongButton = styled.button`
 `;
 
 export default function MyProfile({ userId }) {
-    const [errors, setErrors] = useState([]);
     const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
     const [loading, setLoading] = useState(false);
     const [songs, setSongs] = useState([]);

@@ -45,6 +45,15 @@ router.post(
 );
 
 router.get(
+    "/",
+    asyncHandler(async (req, res) => {
+        const users = await User.findAll({ order: [["createdAt", "DESC"]] });
+
+        res.json(users);
+    })
+);
+
+router.get(
     "/:id",
     asyncHandler(async (req, res) => {
         const userId = parseInt(req.params.id, 10);
@@ -52,16 +61,6 @@ router.get(
         const user = await User.findByPk(userId);
 
         res.json(user);
-    })
-);
-
-router.get(
-    "/:id",
-    asyncHandler(async (req, res) => {
-        const songId = parseInt(req.params.id, 10);
-        const song = await Song.findByPk(songId);
-
-        res.json(song);
     })
 );
 

@@ -3,15 +3,16 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 
+import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage/LandingPage";
 import SignupFormPage from "./components/SignUpFormPage/SignUpFormPage";
 import LoginFormPage from "./components/LoginFormPage/LoginFormPage";
-import Navigation from "./components/Navigation";
+import ProfilePage from "./components/ProfilePage/ProfilePage";
 import UploadSongPage from "./components/UploadSongPage/UploadSongPage";
 import EditSongPage from "./components/EditSongPage/EditSongPage";
+import HomePage from "./components/HomePage/HomePage";
 
 import * as sessionActions from "./store/session";
-import ProfilePage from "./components/ProfilePage/ProfilePage";
 
 const RootContainer = styled.div`
     background-color: #323f4b;
@@ -45,6 +46,9 @@ function Root() {
                         </Route>
                     </Switch>
                     <Switch>
+                        <Route path="/home">
+                            <HomePage />
+                        </Route>
                         <Route path="/songs/new">
                             <UploadSongPage />
                         </Route>
