@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import fetch from "../../store/csrf";
+import Loader from "../Loader/Loader";
 
 const Header = styled.div`
     display: flex;
@@ -103,23 +104,6 @@ const SectionContent = styled.div`
     margin-bottom: 0px;
 `;
 
-const EditButton = styled(NavLink)`
-    margin-top: 20px;
-    background-color: #c054eb;
-    border: 0px;
-    width: 200px;
-    height: 33.33px;
-    letter-spacing: 0.1rem;
-    color: #f5f7f9;
-    border-radius: 50px;
-    box-shadow: rgba(149, 157, 165, 0.15) 0px 8px 24px;
-    font-size: 0.7rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`;
-
 export default function OtherProfile({ userId }) {
     const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -129,7 +113,7 @@ export default function OtherProfile({ userId }) {
     useEffect(() => {
         const fetchMySongs = async (userId) => {
             try {
-                setLoading(false);
+                setLoading(true);
                 const res = await fetch(`/api/profiles/${userId}`);
 
                 const songs = res.data;
@@ -138,7 +122,7 @@ export default function OtherProfile({ userId }) {
 
                 if (songs[0].User) setProfile(songs[0].User);
 
-                setLoading(true);
+                setLoading(false);
             } catch (err) {
                 console.error(err);
             }
@@ -162,7 +146,9 @@ export default function OtherProfile({ userId }) {
                 <Section>
                     <SectionTitle>Uploaded Songs</SectionTitle>
                     <SectionContent>
-                        {songs[0] ? (
+                        {loading ? (
+                            <Loader></Loader>
+                        ) : songs[0] ? (
                             songs.map((song) => (
                                 <Song key={song.id}>
                                     <Artwork src={song.artwork} alt="artwork" />

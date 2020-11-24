@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import fetch from "../../store/csrf";
+import Loader from "../Loader/Loader";
 
 import "./Profile.css";
 
@@ -47,6 +49,7 @@ const Main = styled.div`
     display: flex;
     padding: 30px;
     height: 100%;
+    background-color: #323f4b;
 `;
 
 const Section = styled.div`
@@ -96,9 +99,52 @@ const SongArtist = styled.h2`
 const SectionContent = styled.div`
     width: 85vw;
     overflow-x: scroll;
+    overflow-y: hidden;
     display: flex;
     flex-direction: row;
     margin-bottom: 0px;
+`;
+
+const ActionContainer = styled.div`
+    margin-top: 10px;
+    display: flex;
+    background-color: #32;
+`;
+
+const EditSongButton = styled(NavLink)`
+    background-color: #323f4b;
+    border: 0px;
+    height: 33.33px;
+    letter-spacing: 0.1rem;
+    color: #f5f7f9;
+    border-radius: 50px;
+    box-shadow: rgba(149, 157, 165, 0.15) 0px 8px 24px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px;
+    height: 10px;
+`;
+
+const DeleteSongButton = styled.button`
+    background-color: #323f4b;
+    border: 0px;
+    height: 33.33px;
+    letter-spacing: 0.1rem;
+    color: #f5f7f9;
+    border-radius: 50px;
+    box-shadow: rgba(149, 157, 165, 0.15) 0px 8px 24px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px;
+    height: 10px;
 `;
 
 export default function MyProfile({ userId }) {
@@ -110,7 +156,7 @@ export default function MyProfile({ userId }) {
     useEffect(() => {
         const fetchMySongs = async (userId) => {
             try {
-                setLoading(false);
+                setLoading(true);
                 const res = await fetch(`/api/profiles/${userId}`);
 
                 const songs = res.data;
@@ -119,7 +165,7 @@ export default function MyProfile({ userId }) {
 
                 if (songs[0].User) setProfile(songs[0].User);
 
-                setLoading(true);
+                setLoading(false);
             } catch (err) {
                 console.error(err);
             }
@@ -143,7 +189,9 @@ export default function MyProfile({ userId }) {
                 <Section>
                     <SectionTitle>Uploaded Songs</SectionTitle>
                     <SectionContent>
-                        {songs[0] ? (
+                        {loading ? (
+                            <Loader></Loader>
+                        ) : songs[0] ? (
                             songs.map((song) => (
                                 <Song key={song.id}>
                                     <Artwork src={song.artwork} alt="artwork" />
@@ -151,6 +199,13 @@ export default function MyProfile({ userId }) {
                                     <SongArtist>
                                         {song.User.username}
                                     </SongArtist>
+                                    <ActionContainer>
+                                        <EditSongButton
+                                            to={`/songs/${song.id}/edit`}
+                                        >
+                                            ...
+                                        </EditSongButton>
+                                    </ActionContainer>
                                 </Song>
                             ))
                         ) : (
