@@ -7,17 +7,15 @@ export default function ProfilePage() {
     const user = useSelector((state) => {
         return state.session.user;
     });
-
     const { userId } = useParams();
-    console.log(userId);
-    console.log(user.id);
-    return (
-        <div>
-            {user.id === parseInt(userId, 10) ? (
-                <MyProfile user={user}></MyProfile>
-            ) : (
-                <div>Not your account</div>
-            )}
-        </div>
-    );
+    const history = useHistory();
+
+    if (!user) {
+        history.push("/login");
+        return null;
+    } else if (user.id === parseInt(userId, 10)) {
+        return <MyProfile user={user}></MyProfile>;
+    } else {
+        return <div>Not your account</div>;
+    }
 }

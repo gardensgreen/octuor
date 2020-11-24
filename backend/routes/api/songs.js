@@ -16,11 +16,21 @@ const songNotFoundError = (id) => {
     return err;
 };
 
+const notValidMP3 = () => {
+    const err = Error(`Song must be of type mp3.`);
+    err.title = "Invalid File Type for song.";
+    err.status = 400;
+    return err;
+};
+
 router.post(
     "/",
     requireAuth,
     singleMulterUpload("audio"),
-    asyncHandler(async (req, res) => {
+    asyncHandler(async (req, res, next) => {
+        if (req.mimetype !== "audio/mpeg") {
+            next(notValidMP3());
+        }
         console.log(req.body);
         const songData = req.body;
         songData.audio = await singlePublicFileUpload(req.file);
