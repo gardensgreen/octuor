@@ -41,10 +41,6 @@ export default function Search() {
         };
 
         setSearchResults();
-
-        return () => {
-            dispatch(removeSearchResults());
-        };
     }, [term]);
 
     const handleChange = (e) => {
