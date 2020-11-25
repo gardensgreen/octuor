@@ -6,6 +6,7 @@ import styled from "styled-components";
 import fetch from "../../store/csrf";
 import Loader from "../Loader/Loader";
 import { Player } from "../Player/Player";
+import Search from "../Search/Search";
 
 const PageContainer = styled.div`
     min-height: 100%;
@@ -168,6 +169,7 @@ export default function ProfilePage() {
             <PageContainer>
                 <Main>
                     <Section>
+                        <Search></Search>
                         <SectionTitle>Newest Songs</SectionTitle>
                         <SectionContent>
                             {loading ? (
