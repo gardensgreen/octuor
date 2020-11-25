@@ -38,7 +38,7 @@ const Input = styled.input`
 
 const SubmitButton = styled.button`
     margin-top: 20px;
-    background-color: #c054eb;
+    background-color: #a239a0;
     border: 0px;
     height: 33.33px;
     letter-spacing: 0.1rem;
@@ -50,11 +50,54 @@ const SubmitButton = styled.button`
     font-size: 0.7rem;
     font-weight: bold;
     width: 100%;
+    transition: background-color 0.5s;
+    transition-timing-function: ease-in-out;
+    &:hover {
+        background-color: #c054be;
+    }
 `;
 
 const ImageContainer = styled.div`
     display: flex;
     justify-content: center;
+`;
+
+const UploadDisplay = styled.div`
+    visibility: hidden;
+    display: none;
+    background-color: rgba(31, 41, 51, 0.8);
+    justify-content: center;
+    padding: 0;
+    left: 0;
+    transition: visibility 0.1s ease-in;
+    min-height: 100%;
+    min-width: 100%;
+    align-items: center;
+    position: absolute;
+    margin-right: 20px;
+    color: #f5f7f9;
+`;
+
+const UploadText = styled.span`
+    background-color: #c054eb;
+    border: 0px;
+    margin-top: -30px;
+    height: 33.33px;
+    width: 60%;
+    letter-spacing: 0.1rem;
+    color: #f5f7f9;
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+        cursor: pointer;
+    }
 `;
 const UploadButton = styled.img`
     margin-top: 20px;
@@ -67,6 +110,10 @@ const UploadButton = styled.img`
         rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     font-size: 0.7rem;
     font-weight: bold;
+    &:hover ${UploadDisplay} {
+        visibility: visible;
+        display: flex;
+    }
 `;
 
 const DividerContainer = styled.div`
@@ -219,7 +266,15 @@ export default function EditSongForm() {
                         {imageLoading ? (
                             <Loader />
                         ) : (
-                            <UploadButton src={artwork} onClick={handleClick} />
+                            <>
+                                <UploadDisplay>
+                                    <UploadText>Upload</UploadText>
+                                </UploadDisplay>
+                                <UploadButton
+                                    src={artwork}
+                                    onClick={handleClick}
+                                />
+                            </>
                         )}
                     </ImageContainer>
                 </InputContainer>

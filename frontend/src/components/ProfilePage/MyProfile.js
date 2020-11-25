@@ -183,6 +183,7 @@ const EditSongButton = styled(NavLink)`
     text-decoration: none;
     width: 50px;
     height: 10px;
+    z-index: 3;
 `;
 
 const DeleteSongButton = styled.button`
