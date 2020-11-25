@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { useHistory, useParams, Redirect } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loader from "../Loader/Loader";
 import styled from "styled-components";
@@ -156,6 +156,8 @@ export default function EditSongForm() {
         if (artwork && artwork.name) {
             updateSong(songId);
         }
+
+        return function cleanup() {};
     }, [artwork]);
 
     const handleSubmit = async (e) => {
@@ -200,7 +202,7 @@ export default function EditSongForm() {
         setTitle(e.target.value);
     };
 
-    if (!user) history.push("/login");
+    if (!user) return <Redirect to="/login" />;
     if (loading) return <Loader style={{ marginTop: 200 }} />;
 
     return (

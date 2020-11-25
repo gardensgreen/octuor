@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import styled from "styled-components";
 import MyProfile from "./MyProfile";
 import OtherProfile from "./OtherProfile";
@@ -24,11 +24,9 @@ export default function ProfilePage() {
         return state.session.user;
     });
     const { userId } = useParams();
-    const history = useHistory();
 
     if (!user) {
-        history.push("/login");
-        return null;
+        return <Redirect to="/login" />;
     } else if (user.id === parseInt(userId, 10)) {
         return (
             <PageContainer>

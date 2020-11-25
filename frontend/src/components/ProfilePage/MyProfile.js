@@ -186,6 +186,10 @@ export default function MyProfile({ userId }) {
         };
 
         fetchMySongs(userId);
+
+        return function cleanup() {
+            setSongs([]);
+        };
     }, [userId]);
 
     useEffect(() => {
@@ -205,6 +209,10 @@ export default function MyProfile({ userId }) {
         };
 
         fetchUser(userId);
+
+        return function cleanup() {
+            setUser(null);
+        };
     }, [userId]);
 
     const handleClick = (e, song) => {

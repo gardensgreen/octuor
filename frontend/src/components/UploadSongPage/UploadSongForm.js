@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import styled from "styled-components";
 import fetch from "../../store/csrf";
@@ -79,8 +79,9 @@ export default function UploadSongForm(props) {
     });
 
     const history = useHistory();
+    const uploadInput = useRef(null);
 
-    if (!user) history.push("/login");
+    if (!user) return <Redirect to="/login" />;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -110,7 +111,6 @@ export default function UploadSongForm(props) {
             setErrors([err.data.message]);
         }
     };
-    const uploadInput = useRef(null);
 
     const handleClick = (e) => {
         uploadInput.current.click();

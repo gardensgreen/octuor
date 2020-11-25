@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import styled from "styled-components";
 
 import fetch from "../../store/csrf";
@@ -123,16 +123,16 @@ export default function ProfilePage() {
 
     const history = useHistory();
 
-    if (!user) {
-        history.push("/login");
-    }
-
     useEffect(() => {
         if (term === "") {
             setSearching(false);
         } else {
             setSearching(true);
         }
+
+        return function cleanup() {
+            setSearching(false);
+        };
     }, [term]);
 
     useEffect(() => {
@@ -149,6 +149,10 @@ export default function ProfilePage() {
         };
 
         fetchSongs();
+
+        return function cleanup() {
+            setSongs([]);
+        };
     }, []);
 
     useEffect(() => {
@@ -168,7 +172,14 @@ export default function ProfilePage() {
         };
 
         fetchUsers();
+        return function cleanup() {
+            setUsers([]);
+        };
     }, []);
+
+    if (!user) {
+        return <Redirect to="/login" />;
+    }
 
     const handleClick = (e, song) => {
         e.preventDefault();

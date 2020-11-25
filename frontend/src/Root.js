@@ -42,8 +42,6 @@ function Root() {
                         <Route path="/signup">
                             <SignupFormPage />
                         </Route>
-                    </Switch>
-                    <Switch>
                         <Route path="/home">
                             <HomePage />
                         </Route>
