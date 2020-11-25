@@ -1,10 +1,6 @@
 const express = require("express");
-const { check } = require("express-validator");
 const asyncHandler = require("express-async-handler");
-const { singleMulterUpload, singlePublicFileUpload } = require("../../awsS3");
 
-const { handleValidationErrors } = require("../../utils/validation");
-const { setTokenCookie, requireAuth } = require("../../utils/auth");
 const { User, Song } = require("../../db/models");
 
 const router = express.Router();
@@ -18,7 +14,7 @@ const profileNotFoundError = (id) => {
 
 router.get(
     "/:id",
-    asyncHandler(async (req, res) => {
+    asyncHandler(async (req, res, next) => {
         const userId = parseInt(req.params.id, 10);
         const songs = await Song.findAll({
             where: {
@@ -26,6 +22,8 @@ router.get(
             },
             include: User,
         });
+
+        if (!songs) return next(profileNotFoundError);
 
         res.json(songs);
     })
