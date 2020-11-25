@@ -1,11 +1,17 @@
 import fetch from "./csrf";
 
 const SET_SEARCH_RESULTS = "SET_SEARCH_RESULTS";
+const REMOVE_SEARCH_RESULTS = "REMOVE_SEARCH_RESULTS";
 
 const setSearchResults = (searchResults) => {
     return {
         type: SET_SEARCH_RESULTS,
         payload: searchResults,
+    };
+};
+export const removeSearchResults = () => {
+    return {
+        type: REMOVE_SEARCH_RESULTS,
     };
 };
 
@@ -20,7 +26,7 @@ export const getSearchResults = (term) => async (dispatch) => {
 
     const searchResults = res.data;
     console.log(res.data);
-    dispatch(setSearchResults(searchResults));
+    dispatch(setSearchResults({ ...searchResults, term }));
 };
 
 const searchReducer = (state = {}, action) => {
@@ -30,7 +36,10 @@ const searchReducer = (state = {}, action) => {
                 ...state,
                 songs: action.payload.songs,
                 users: action.payload.users,
+                term: action.payload.term,
             };
+        case REMOVE_SEARCH_RESULTS:
+            return { ...state, songs: null, users: null, term: null };
         default:
             return state;
     }

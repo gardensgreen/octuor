@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { getSearchResults, removeSearchResults } from "../../store/search";
 
 const SearchBarContainer = styled.div`
     padding: 10px;
@@ -23,12 +25,34 @@ const SearchBar = styled.input`
 export default function Search() {
     const [term, setTerm] = useState("");
 
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const setSearchResults = async () => {
+            if (term !== "") {
+                await dispatch(getSearchResults(term));
+            } else {
+                dispatch(removeSearchResults());
+            }
+        };
+
+        setSearchResults();
+
+        return () => {
+            dispatch(removeSearchResults());
+        };
+    }, [term]);
+
+    const handleChange = (e) => {
+        setTerm(e.target.value);
+    };
+
     return (
         <SearchBarContainer>
             <SearchBar
                 type="text"
                 value={term}
-                onChange={(e) => setTerm(e.target.value)}
+                onChange={handleChange}
                 placeholder="Search for anything..."
                 required
             />
