@@ -197,7 +197,7 @@ export default function MyProfile({ userId }) {
                 const user = res.data;
 
                 if (user) setUser(user);
-                console.log(user);
+
                 setLoading(false);
             } catch (err) {
                 console.error(err);

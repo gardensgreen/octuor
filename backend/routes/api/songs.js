@@ -35,7 +35,6 @@ router.post(
     requireAuth,
     singleMulterUpload("audio"),
     asyncHandler(async (req, res, next) => {
-        console.log(req.file.mimetype);
         if (req.file.mimetype !== "audio/mpeg") {
             return next(notValidMP3());
         }

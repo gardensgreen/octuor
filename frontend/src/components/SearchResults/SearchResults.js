@@ -97,8 +97,6 @@ export default function SearchResults() {
         return state.search.users;
     });
 
-    console.log(users);
-
     const songs = useSelector((state) => {
         return state.search.songs;
     });

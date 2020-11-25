@@ -110,7 +110,6 @@ function LoginForm() {
         return dispatch(
             sessionActions.loginUser({ credential, password })
         ).catch((res) => {
-            console.log(res);
             if (res.data && res.data.errors) setErrors(res.data.errors);
         });
     };

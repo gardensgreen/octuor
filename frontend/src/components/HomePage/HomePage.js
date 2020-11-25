@@ -140,11 +140,8 @@ export default function ProfilePage() {
             try {
                 setLoading(true);
                 const res = await fetch(`/api/songs`);
-                console.log(res);
                 const songs = res.data;
-
                 if (songs) setSongs(songs);
-
                 setLoading(false);
             } catch (err) {
                 console.error(err);
@@ -159,7 +156,7 @@ export default function ProfilePage() {
             try {
                 setLoading(true);
                 const res = await fetch(`/api/users`);
-                console.log(res);
+
                 const users = res.data;
 
                 if (users) setUsers(users);

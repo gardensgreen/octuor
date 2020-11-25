@@ -25,7 +25,6 @@ export const getSearchResults = (term) => async (dispatch) => {
     });
 
     const searchResults = res.data;
-    console.log(res.data);
     dispatch(setSearchResults({ ...searchResults, term }));
 };
 
