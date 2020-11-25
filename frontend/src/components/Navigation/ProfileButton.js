@@ -15,13 +15,13 @@ const Menu = styled.div`
     top: 45px;
     border-radius: 3px;
     background-color: transparent;
-    z-index: 1;
+    z-index: 3;
 `;
 
 const Icon = styled.img`
     border-radius: 25px;
     right: 40px;
-    z-index: 1;
+    z-index: 3;
     top: 40px;
     width: 50px;
     height: 50px;

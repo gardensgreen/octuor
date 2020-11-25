@@ -183,7 +183,7 @@ export default function ProfilePage() {
             <PageContainer>
                 <Search></Search>
 
-                {searching ? (
+                {term && searching ? (
                     <SearchResults />
                 ) : (
                     <Main>
