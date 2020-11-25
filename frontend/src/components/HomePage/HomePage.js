@@ -15,13 +15,14 @@ const PageContainer = styled.div`
     height: 100%;
     position: relative;
     display: grid;
-    grid-template-rows: 1fr auto;
-    grid-template-columns: auto;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr auto;
     grid-template-areas:
         "search search search"
         "main-view main-view main-view"
         "now-playing-bar now-playing-bar now-playing-bar";
     background-color: #323f4b;
+    align-content: start;
 `;
 const Main = styled.div`
     display: flex;

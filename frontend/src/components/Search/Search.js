@@ -8,9 +8,9 @@ const SearchBarContainer = styled.div`
     display: flex;
     margin-top: 5px;
     margin-bottom: -30px;
-    aligh-items: center;
-    jutify-content: center;
+    align-items: center;
     grid-area: search;
+    max-height: 100px;
     z-index: 2;
 `;
 const SearchBar = styled.input`
