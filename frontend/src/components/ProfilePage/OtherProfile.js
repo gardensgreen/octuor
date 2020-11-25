@@ -71,16 +71,59 @@ const SectionTitle = styled.h2`
     color: #f5f7f9;
 `;
 
+const PlayDisplay = styled.div`
+    visibility: hidden;
+    display: none;
+    display: flex;
+    background-color: rgba(31, 41, 51, 0.8);
+    justify-content: center;
+    padding: 0;
+    left: 0;
+    transition: visibility 0.1s ease-in;
+    min-height: 100%;
+    min-width: 100%;
+    align-items: center;
+    position: absolute;
+    margin-right: 20px;
+    color: #f5f7f9;
+`;
+const PlayText = styled.span`
+    background-color: #c054eb;
+    border: 0px;
+    margin-top: -30px;
+    height: 33.33px;
+    width: 60%;
+    letter-spacing: 0.1rem;
+    color: #f5f7f9;
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+        cursor: pointer;
+    }
+`;
+
 const Song = styled.div`
     display: flex;
     flex-direction: column;
     padding: 10px;
+    margin-right: 20px;
     background-color: rgba(31, 41, 51, 0.57);
     border-radius: 3px;
-    margin-right: 20px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
         rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
         rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    position: relative;
+    &:hover ${PlayDisplay} {
+        visibility: visible;
+        display: flex;
+    }
 `;
 
 const Artwork = styled.img`
@@ -201,6 +244,9 @@ export default function OtherProfile({ userId }) {
                                             })
                                         }
                                     >
+                                        <PlayDisplay>
+                                            <PlayText>PLAY</PlayText>
+                                        </PlayDisplay>
                                         <Artwork
                                             src={song.artwork}
                                             alt="artwork"
