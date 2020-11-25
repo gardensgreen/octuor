@@ -22,6 +22,7 @@ router.post(
                     [Op.iLike]: "%" + term + "%",
                 },
             },
+            include: User,
         });
 
         let users = await User.findAll({

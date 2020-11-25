@@ -7,6 +7,7 @@ import fetch from "../../store/csrf";
 import Loader from "../Loader/Loader";
 import { Player } from "../Player/Player";
 import Search from "../Search/Search";
+import SearchResults from "../SearchResults/SearchResults";
 
 const PageContainer = styled.div`
     min-height: 100%;
@@ -17,6 +18,7 @@ const PageContainer = styled.div`
     grid-template-rows: 1fr auto;
     grid-template-columns: auto;
     grid-template-areas:
+        "search search search"
         "main-view main-view main-view"
         "now-playing-bar now-playing-bar now-playing-bar";
     background-color: #323f4b;
@@ -30,14 +32,12 @@ const Main = styled.div`
     overflow-y: scroll;
     margin-left: 10px;
 `;
-
 const Section = styled.div`
     display: flex;
     flex-direction: column;
 
     margin: 0;
 `;
-
 const SectionTitle = styled.h2`
     display: block;
     font-size: 20px;
@@ -112,14 +112,28 @@ export default function ProfilePage() {
     const [loading, setLoading] = useState(false);
     const [songs, setSongs] = useState([]);
     const [users, setUsers] = useState([]);
+    const [searching, setSearching] = useState(false);
     const user = useSelector((state) => {
         return state.session.user;
     });
+
+    const term = useSelector((state) => {
+        return state.search.term;
+    });
+
     const history = useHistory();
 
     if (!user) {
         history.push("/login");
     }
+
+    useEffect(() => {
+        if (term === "") {
+            setSearching(false);
+        } else {
+            setSearching(true);
+        }
+    }, [term]);
 
     useEffect(() => {
         const fetchSongs = async () => {
@@ -167,81 +181,91 @@ export default function ProfilePage() {
     return (
         <>
             <PageContainer>
-                <Main>
-                    <Section>
-                        <Search></Search>
-                        <SectionTitle>Newest Songs</SectionTitle>
-                        <SectionContent>
-                            {loading ? (
-                                <Loader></Loader>
-                            ) : songs[0] ? (
-                                songs.map((song) => (
-                                    <Song
-                                        onClick={(e) =>
-                                            handleClick(e, {
-                                                audio: song.audio,
-                                                title: song.title,
-                                                artwork: song.artwork,
-                                            })
-                                        }
-                                        key={song.id}
-                                    >
-                                        <Artwork
-                                            src={song.artwork}
-                                            alt="artwork"
-                                        />
-                                        <SongTitle>
-                                            {song.title.length > 10
-                                                ? song.title.slice(0, 10) +
-                                                  "..."
-                                                : song.title}
-                                        </SongTitle>
-                                        <SongArtist>
-                                            {song.User.username}
-                                        </SongArtist>
-                                    </Song>
-                                ))
-                            ) : (
-                                <div>No songs</div>
-                            )}
-                        </SectionContent>
-                    </Section>
-                    <Section>
-                        <SectionTitle>Hottest Artists</SectionTitle>
-                        <SectionContent>
-                            {loading ? (
-                                <Loader></Loader>
-                            ) : users[0] ? (
-                                users.map((user) => (
-                                    <User
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            history.push(`/users/${user.id}`);
-                                        }}
-                                        key={user.id}
-                                    >
-                                        <UserImage
-                                            src={
-                                                window.location.origin +
-                                                "/artworkPlaceholder.png"
+                <Search></Search>
+
+                {searching ? (
+                    <SearchResults />
+                ) : (
+                    <Main>
+                        <Section>
+                            <SectionTitle>Trending Songs</SectionTitle>
+                            <SectionContent>
+                                {loading ? (
+                                    <Loader></Loader>
+                                ) : songs[0] ? (
+                                    songs.map((song) => (
+                                        <Song
+                                            onClick={(e) =>
+                                                handleClick(e, {
+                                                    audio: song.audio,
+                                                    title: song.title,
+                                                    artwork: song.artwork,
+                                                })
                                             }
-                                            alt="avatar"
-                                        />
-                                        <SongTitle>
-                                            {" "}
-                                            {user.username.length > 10
-                                                ? user.username.slice(0, 10) +
-                                                  "..."
-                                                : user.username}
-                                        </SongTitle>
-                                    </User>
-                                ))
-                            ) : (
-                                <div>No users</div>
-                            )}
-                        </SectionContent>
-                    </Section>
-                </Main>
+                                            key={song.id}
+                                        >
+                                            <Artwork
+                                                src={song.artwork}
+                                                alt="artwork"
+                                            />
+                                            <SongTitle>
+                                                {song.title.length > 10
+                                                    ? song.title.slice(0, 10) +
+                                                      "..."
+                                                    : song.title}
+                                            </SongTitle>
+                                            <SongArtist>
+                                                {song.User.username}
+                                            </SongArtist>
+                                        </Song>
+                                    ))
+                                ) : (
+                                    <div>No songs</div>
+                                )}
+                            </SectionContent>
+                        </Section>
+                        <Section>
+                            <SectionTitle>Hot Artists</SectionTitle>
+                            <SectionContent>
+                                {loading ? (
+                                    <Loader></Loader>
+                                ) : users[0] ? (
+                                    users.map((user) => (
+                                        <User
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                history.push(
+                                                    `/users/${user.id}`
+                                                );
+                                            }}
+                                            key={user.id}
+                                        >
+                                            <UserImage
+                                                src={
+                                                    window.location.origin +
+                                                    "/artworkPlaceholder.png"
+                                                }
+                                                alt="avatar"
+                                            />
+                                            <SongTitle>
+                                                {" "}
+                                                {user.username.length > 10
+                                                    ? user.username.slice(
+                                                          0,
+                                                          10
+                                                      ) + "..."
+                                                    : user.username}
+                                            </SongTitle>
+                                        </User>
+                                    ))
+                                ) : (
+                                    <div>No users</div>
+                                )}
+                            </SectionContent>
+                        </Section>
+                    </Main>
+                )}
+
                 {currentlyPlaying ? (
                     <Player
                         streamUrl={currentlyPlaying.audio}

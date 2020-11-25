@@ -4,10 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { getSearchResults, removeSearchResults } from "../../store/search";
 
 const SearchBarContainer = styled.div`
-    padding: 10px;
+    padding: 30px;
     display: flex;
+    margin-top: 5px;
+    margin-bottom: -30px;
     aligh-items: center;
     jutify-content: center;
+    grid-area: search;
+    z-index: 2;
 `;
 const SearchBar = styled.input`
     padding: 10px 30px;

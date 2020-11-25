@@ -65,7 +65,6 @@ router.get(
             include: User,
             limit: 6,
         });
-        console.log(songs);
         res.json(songs);
     })
 );

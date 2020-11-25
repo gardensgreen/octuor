@@ -39,7 +39,7 @@ const searchReducer = (state = {}, action) => {
                 term: action.payload.term,
             };
         case REMOVE_SEARCH_RESULTS:
-            return { ...state, songs: null, users: null, term: null };
+            return { ...state, songs: null, users: null, term: "" };
         default:
             return state;
     }
