@@ -48,7 +48,7 @@ const LandingContent = styled.h3`
 
 const LandingButton = styled(NavLink)`
     margin-top: 20px;
-    background-color: #c054eb;
+    background-color: #a239a0;
     border: 0px;
     width: 200px;
     height: 33.33px;
@@ -63,6 +63,36 @@ const LandingButton = styled(NavLink)`
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.5s;
+    transition-timing-function: ease-in-out;
+    &:hover {
+        background-color: #c054be;
+    }
+`;
+
+const LandingButton2 = styled(NavLink)`
+    margin-top: 20px;
+    background-color: #00a3bf;
+    border: 0px;
+    width: 200px;
+    height: 33.33px;
+    letter-spacing: 0.1rem;
+    color: #f5f7f9;
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.5s;
+    transition-timing-function: ease-in-out;
+    &:hover {
+        background-color: #00b8d9;
+    }
+    text-decoration: none;
 `;
 
 const ButtonContainer = styled.div`
@@ -106,17 +136,9 @@ export default function LandingPage() {
                         >
                             OPEN WEB PLAYER
                         </LandingButton>
-                        <LandingButton
-                            style={{
-                                textDecoration: "none",
-                                textAlign: "center",
-                                backgroundColor: "transparent",
-                                border: "1px solid #c054eb",
-                            }}
-                            to="/signup"
-                        >
+                        <LandingButton2 to="/signup">
                             SIGN UP FREE
-                        </LandingButton>
+                        </LandingButton2>
                     </ButtonContainer>
                 </Left>
             </LandingPageContainer>

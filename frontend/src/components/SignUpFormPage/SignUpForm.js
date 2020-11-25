@@ -36,7 +36,7 @@ const Input = styled.input`
 
 const SignupButton = styled.button`
     margin-top: 20px;
-    background-color: #c054eb;
+    background-color: #a239a0;
     border: 0px;
     height: 33.33px;
     letter-spacing: 0.1rem;
@@ -47,6 +47,11 @@ const SignupButton = styled.button`
         rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     font-size: 0.7rem;
     font-weight: bold;
+    transition: background-color 0.5s;
+    transition-timing-function: ease-in-out;
+    &:hover {
+        background-color: #c054be;
+    }
 `;
 
 function SignupForm() {
