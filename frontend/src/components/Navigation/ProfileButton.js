@@ -10,7 +10,7 @@ const Menu = styled.div`
     justify-content: flex-end
 
     width: 400px;
-    position: relative;
+    position: absolute;
     right: 130px;
     top: 45px;
     border-radius: 3px;
