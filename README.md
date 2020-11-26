@@ -159,7 +159,3 @@ To fix a bug or add a feature, follow these steps:
     - Run `npx dotenv sequelize db:seed:all`
 4. Start express server by running `npm start` in the root project directory
 5. The server will start on `http://localhost:8080`
-
----
-
-| -------------------------------------------- | -------------------------------------------- | ------------------------------------------------- |
