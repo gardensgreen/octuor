@@ -5,7 +5,7 @@
 
 ## Demo
 
-Here is a working live demo: [https://sink-overflow.herokuapp.com](https://sink-overflow.herokuapp.com)
+Here is a working live demo: [https://octour.herokuapp.com](https://octour.herokuapp.com)
 
 ## Dependencies
 
@@ -70,13 +70,29 @@ Below is an example of our basic auth functionality.
 
 <img src='./frontend/public/databse-schema.png' align="center" alt="App Database Diagram" width="800">
 
+#### Session API
+
+The Session API sets a token cookie upon login, registration, or restoring a user
+
+Below is an example of how the session API works for signing in
+<!-- <img src='./readmeAssets/session.png' align="center" alt="Code snippet" width="400"> -->
+
+
+#### Search API
+
+The song API allows you to upload a mp3 file which gets uploaded to an awss s3 bucket. Upon uploading you get the chance to upload an artwork along with the song and change the title. The first step is a post request to the server and the second step is a put. This was done this way so that even if a user exits the uploading process half way, the song will still be there
+
+Below is an example of how our song API works for creating a new song record.
+
+<!-- <img src='./readmeAssets/songUpload.png' align="center" alt="Code snippet" width="400"> -->
+
 #### Search API
 
 The search API is fairly simple and uses SQL wildcards to match search terms with song titles and usernames.
 
 Below is an example of how our search API is working for the moment
 
-<!-- <img src='./public/search-code-snippet.png' align="center" alt="Code snippet" width="400"> -->
+<!-- <img src='./readmeAssets/search.png' align="center" alt="Code snippet" width="400"> -->
 
 ---
 
