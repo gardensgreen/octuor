@@ -68,7 +68,7 @@ Below is an example of our basic auth functionality.
 
 #### Database
 
-<img src='./frontend/public/database-schema.png' align="center" alt="App Database Diagram" width="800">
+<img src='./frontend/public/databse-schema.png' align="center" alt="App Database Diagram" width="800">
 
 #### Search API
 
