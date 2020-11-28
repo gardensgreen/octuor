@@ -99,49 +99,49 @@ Below is an example of how our search API is working for the moment
 
 ## Pages
 
+### Splash Page
+
+<img src='./readmeAssets/splash.png' align="center" alt="Code snippet" width="700">
+
 ### Login (Demo)
 
-<img src='./public/screenshots/login.png' align="center" alt="Code snippet" width="700">
+<img src='./readmeAssets/login.png' align="center" alt="Code snippet" width="700">
 
 ### Signup
 
-<img src='./public/screenshots/signup.png' align="center" alt="Code snippet" width="700">
+<img src='./readmeAssets/signup.png' align="center" alt="Code snippet" width="700">
 
 ### Home (Nav preview)
 
-Our homepage is a feed of top questions which are sorted using quicksort! :D
+Our homepage is a feed of new songs and artists.
 
-<img src='./public/screenshots/home.png' align="center" alt="Code snippet" width="700">
+<img src='./readmeAssets/home.png' align="center" alt="Code snippet" width="700">
 
-### Question
+### Audio Player
 
-This is the page you're taken when you click on an individual question
+When you click on a song you can play it using the custom audio player.
 
-<img src='./public/screenshots/question.png' align="center" alt="Code snippet" width="700">
+<img src='./readmeAssets/player.png' align="center" alt="Code snippet" width="700">
 
-This is the form to create a new question
+### Upload Song
 
-<img src='./public/screenshots/create-question.png' align="center" alt="Code snippet" width="700">
+This is the form to create a new song   
 
-This is what the question page looks like if you are the owner of the question and the owner of an answer. (for reference)
+<img src='./readmeAssets/upload.png' align="center" alt="Code snippet" width="700">
 
-<img src='./public/screenshots/owner.png' align="center" alt="Code snippet" width="700">
+### Edit Song
 
-There is also a page for viewing question's you've posted.
+This is where you're taken after the song is uploaded or you manually select to edit a song
 
-<img src='./public/screenshots/my-questions.png' align="center" alt="Code snippet" width="700">
+<img src='./readmeAssets/edit.png' align="center" alt="Code snippet" width="700">
+<img src='./readmeAssets/edit2.png' align="center" alt="Code snippet" width="700">
 
 ### Search
 
-The search queries by question title and shows results as the image below.
+The search uses redux to rerender the home page to show results as you type
 
-<img src='./public/screenshots/search.png' align="center" alt="Code snippet" width="700">
+<img src='./public/screenshots/search.gif' align="center" alt="Code snippet" width="700">
 
-### Voting
-
-We wanted to showcase voting as it is one of the core functionalities on sink overflow.
-
-<img src='./public/screenshots/votes-recording.gif' align="center" alt="Code snippet" width="700">
 
 ## Usage
 
