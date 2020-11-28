@@ -140,7 +140,7 @@ This is where you're taken after the song is uploaded or you manually select to 
 
 The search uses redux to rerender the home page to show results as you type
 
-<img src='./public/screenshots/search.gif' align="center" alt="Code snippet" width="700">
+<img src='./readmeAssets/search.gif' align="center" alt="Code snippet" width="700">
 
 
 ## Usage
