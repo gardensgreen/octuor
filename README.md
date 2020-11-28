@@ -1,4 +1,4 @@
-<img src='./frontend/public/octuorLogo.png' align="center" alt="Octour logo" width="300">
+<img src='./frontend/public/wBackground.png' align="center" alt="Octour logo" width="300">
 <br>
 
 **Octour** is a platform for artists to share and listen to music, modeled on [Soundcloud] (https://www.soundcloud.com/). It's design aspect is heavily inspired by [Spotify] (https://www.soundcloud.com/). It allows users to create and upload songs, view user profiles, and search for other users and songs. It uses RESTful API routes for profiles, session, songs, users, and search.
