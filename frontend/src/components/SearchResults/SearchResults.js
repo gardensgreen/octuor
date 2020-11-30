@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { Player } from "../Player/Player";
-import Search from "../Search/Search";
 
 const Main = styled.div`
     display: flex;
@@ -136,6 +133,27 @@ const SectionContent = styled.div`
     min-height: 233px;
 `;
 
+const NotFound = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const NotFoundTitle = styled.h2`
+    display: block;
+    font-size: 17px;
+    line-height: 17px;
+    text-align: left;
+    color: #9ea5ad;
+`;
+
+const NotFoundDescription = styled.h3`
+    display: block;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    color: #9ea5ad;
+`;
+
 export default function SearchResults({ setCurrentlyPlaying }) {
     const history = useHistory();
     const users = useSelector((state) => {
@@ -185,7 +203,15 @@ export default function SearchResults({ setCurrentlyPlaying }) {
                             </Song>
                         ))
                     ) : (
-                        <div>No songs</div>
+                        <NotFound>
+                            <NotFoundTitle>
+                                No song results found for "{term}"
+                            </NotFoundTitle>
+                            <NotFoundDescription>
+                                Please make sure your words are spelled
+                                correctly or use less or different keywords."
+                            </NotFoundDescription>
+                        </NotFound>
                     )}
                 </SectionContent>
             </Section>
@@ -217,7 +243,15 @@ export default function SearchResults({ setCurrentlyPlaying }) {
                             </User>
                         ))
                     ) : (
-                        <div>No users</div>
+                        <NotFound>
+                            <NotFoundTitle>
+                                No artist results found for "{term}"
+                            </NotFoundTitle>
+                            <NotFoundDescription>
+                                Please make sure your words are spelled
+                                correctly or use less or different keywords."
+                            </NotFoundDescription>
+                        </NotFound>
                     )}
                 </SectionContent>
             </Section>

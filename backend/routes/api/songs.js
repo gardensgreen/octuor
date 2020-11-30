@@ -56,6 +56,17 @@ router.get(
     })
 );
 
+router.delete(
+    "/:id",
+    asyncHandler(async (req, res) => {
+        const songId = parseInt(req.params.id, 10);
+        const song = await Song.findByPk(songId);
+        await song.destroy();
+
+        res.json(song);
+    })
+);
+
 router.get(
     "/",
     asyncHandler(async (req, res) => {

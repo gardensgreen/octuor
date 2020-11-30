@@ -187,7 +187,7 @@ const EditSongButton = styled(NavLink)`
 `;
 
 const DeleteSongButton = styled.button`
-    background-color: #323f4b;
+    background-color: #c054eb;
     border: 0px;
     height: 33.33px;
     letter-spacing: 0.1rem;
@@ -204,6 +204,28 @@ const DeleteSongButton = styled.button`
 
     width: 50px;
     height: 10px;
+    z-index: 3;
+`;
+
+const NotFound = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const NotFoundTitle = styled.h2`
+    display: block;
+    font-size: 17px;
+    line-height: 17px;
+    text-align: left;
+    color: #9ea5ad;
+`;
+
+const NotFoundDescription = styled.h3`
+    display: block;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    color: #9ea5ad;
 `;
 
 export default function MyProfile({ userId }) {
@@ -264,6 +286,21 @@ export default function MyProfile({ userId }) {
         setCurrentlyPlaying(song);
     };
 
+    const handleDelete = async (e, songId) => {
+        e.preventDefault();
+        const res = await fetch(`/api/songs/${songId}`, {
+            method: "DELETE",
+        });
+
+        if (res && res.data) {
+            setSongs(
+                songs.filter((song) => {
+                    return song !== res.data;
+                })
+            );
+        }
+    };
+
     return (
         <>
             <ProfileContainer>
@@ -320,11 +357,26 @@ export default function MyProfile({ userId }) {
                                             >
                                                 ...
                                             </EditSongButton>
+                                            <DeleteSongButton
+                                                onClick={(e) =>
+                                                    handleDelete(e, song.id)
+                                                }
+                                            >
+                                                Del
+                                            </DeleteSongButton>
                                         </ActionContainer>
                                     </Song>
                                 ))
                             ) : (
-                                <div>No songs</div>
+                                <NotFound>
+                                    <NotFoundTitle>
+                                        No Uploaded Songs
+                                    </NotFoundTitle>
+                                    <NotFoundDescription>
+                                        Click on the menu button in the upper
+                                        right hand side to share the love.
+                                    </NotFoundDescription>
+                                </NotFound>
                             )}
                         </SectionContent>
                     </Section>
