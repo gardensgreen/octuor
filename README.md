@@ -74,8 +74,8 @@ Below is an example of our basic auth functionality.
 
 The Session API sets a token cookie upon login, registration, or restoring a user
 
-Below is an example of how the session API works for signing in
-<br />
+Below is an example of how the session API works for signing in.
+
 <img src='./readmeAssets/session.png' align="center" alt="Code snippet" width="400">
 
 
