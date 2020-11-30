@@ -232,6 +232,7 @@ export default function MyProfile({ userId }) {
     const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
     const [loading, setLoading] = useState(false);
     const [songs, setSongs] = useState([]);
+    const [songDeleted, setSongDeleted] = useState(false);
     const [profile, setProfile] = useState({});
     const [user, setUser] = useState(null);
 
@@ -256,7 +257,7 @@ export default function MyProfile({ userId }) {
         return function cleanup() {
             setSongs([]);
         };
-    }, [userId]);
+    }, [userId, songDeleted]);
 
     useEffect(() => {
         const fetchUser = async (userId) => {
@@ -288,6 +289,7 @@ export default function MyProfile({ userId }) {
 
     const handleDelete = async (e, songId) => {
         e.preventDefault();
+        setSongDeleted(true);
         const res = await fetch(`/api/songs/${songId}`, {
             method: "DELETE",
         });
@@ -298,6 +300,8 @@ export default function MyProfile({ userId }) {
                     return song !== res.data;
                 })
             );
+
+            setSongDeleted(false);
         }
     };
 
