@@ -136,8 +136,7 @@ const SectionContent = styled.div`
     min-height: 233px;
 `;
 
-export default function SearchResults() {
-    const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
+export default function SearchResults({ setCurrentlyPlaying }) {
     const history = useHistory();
     const users = useSelector((state) => {
         return state.search.users;

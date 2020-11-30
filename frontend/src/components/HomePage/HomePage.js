@@ -242,7 +242,7 @@ export default function ProfilePage() {
                 <Search></Search>
 
                 {term && searching ? (
-                    <SearchResults />
+                    <SearchResults setCurrentlyPlaying={setCurrentlyPlaying} />
                 ) : (
                     <Main>
                         <Section>
