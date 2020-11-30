@@ -79,9 +79,9 @@ Below is an example of how the session API works for signing in
 <img src='./readmeAssets/session.png' align="center" alt="Code snippet" width="400">
 
 
-#### Search API
+#### Song API
 
-The song API allows you to upload a mp3 file which gets uploaded to an awss s3 bucket. Upon uploading you get the chance to upload an artwork along with the song and change the title. The first step is a post request to the server and the second step is a put. This was done this way so that even if a user exits the uploading process half way, the song will still be there
+The song API allows you to upload a mp3 file and an artwork image to an awss s3 bucket. The song upload use case is split into uploading and then editing the uploaded content. This was done this way so that even if a user exits the uploading process half way, the song will still be there.
 
 Below is an example of how our song API works for creating a new song record.
 
