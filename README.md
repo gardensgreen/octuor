@@ -50,7 +50,7 @@ Here is a working live demo: [https://octour.herokuapp.com](https://octour.herok
 
 ## Application Architecture
 
-Octour's backend server was built using Express for Node. The server has a RESTful API layer for all CRUD actions and for search. It is connected to a PostgreSQL database which leverages sequelize and it's ORM for CRUD operations.
+Octuor's backend server was built using Express for Node. The server has a RESTful API layer for all CRUD actions and for search. It is connected to a PostgreSQL database which leverages sequelize and it's ORM for CRUD operations.
 
 The front end is built on React 17. It uses redux to handle global context (state) and relies heavily on thunk to dispatch async actions. It is built purely with react functional components made simple by leveraging react hooks.
 
