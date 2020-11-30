@@ -47,7 +47,10 @@ router.post(
 router.get(
     "/",
     asyncHandler(async (req, res) => {
-        const users = await User.findAll({ order: [["createdAt", "DESC"]] });
+        const users = await User.findAll({
+            order: [["createdAt", "DESC"]],
+            limit: 6,
+        });
 
         res.json(users);
     })
