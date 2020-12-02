@@ -35,7 +35,10 @@ const SideNavLink = styled(NavLink)`
     align-items: center;
     text-decoration: none;
     color: #f5f7f9;
-
+    transition: color 0.3s ease-in;
+    &:hover {
+        color: #c054eb;
+    }
     &:active {
         color: #c054eb;
     }
