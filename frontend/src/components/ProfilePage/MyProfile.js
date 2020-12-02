@@ -10,6 +10,7 @@ import "./Profile.css";
 const ProfileContainer = styled.div`
     overflow-y: scroll;
     overflow-x: hidden;
+    padding: 30px;
 `;
 const Header = styled.div`
     display: flex;
