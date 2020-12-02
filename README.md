@@ -1,7 +1,7 @@
 <img src='./frontend/public/wBackground.png' align="center" alt="Octour logo" width="300">
 <br>
 
-**Octour** is a platform for artists to share and listen to music, modeled on [Soundcloud] (https://www.soundcloud.com/). It's design aspect is heavily inspired by [Spotify] (https://www.spotify.com/). It allows users to create and upload songs, view user profiles, and search for other users and songs. It uses RESTful API routes for profiles, session, songs, users, and search.
+**Octuor** is a platform for artists to share and listen to music, modeled on [Soundcloud] (https://www.soundcloud.com/), and heavily inspired by [Spotify] (https://www.spotify.com/). It allows users to share and listen to music, view user profiles, and search for other users and songs. It uses RESTful API routes for profiles, session, songs, users, and search.
 
 ## Demo
 
@@ -50,9 +50,9 @@ Here is a working live demo: [https://octour.herokuapp.com](https://octour.herok
 
 ## Application Architecture
 
-Octour's backend server was built using Express for Node. The server has a RESTful API layer for all CRUD actions and for search. The server is connected to a PostgreSQL database which leverages sequelize and it's ORM for CRUD operations.
+Octuor's backend server was built using Express for Node. The server has a RESTful API layer for all CRUD actions and for search. It is connected to a PostgreSQL database which leverages sequelize and it's ORM for CRUD operations.
 
-The front end is built on React 17. It uses redux to handle global context (state). It also relies heavily on thunk to dispatch async actions. Built purely with react functional components by leveraging react hooks.
+The front end is built on React 17. It uses redux to handle global context (state) and relies heavily on thunk to dispatch async actions. It is built purely with react functional components made simple by leveraging react hooks.
 
 ---
 
@@ -74,8 +74,8 @@ Below is an example of our basic auth functionality.
 
 The Session API sets a token cookie upon login, registration, or restoring a user
 
-Below is an example of how the session API works for signing in
-<br />
+Below is an example of how the session API works for signing in.
+
 <img src='./readmeAssets/session.png' align="center" alt="Code snippet" width="400">
 
 
