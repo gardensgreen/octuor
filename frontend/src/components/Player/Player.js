@@ -20,6 +20,8 @@ const PlayerContainer = styled.div`
 
 export const Player = withCustomAudio((props) => {
     const { song, currentTime, duration } = props;
+    console.log(props);
+
     return (
         <PlayerContainer className="p2  flex flex-center rounded">
             <PlayButton
