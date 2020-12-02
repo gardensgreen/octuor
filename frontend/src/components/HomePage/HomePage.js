@@ -35,29 +35,9 @@ const SectionTitle = styled.h2`
     color: #f5f7f9;
 `;
 
-const PlayDisplay = styled.div`
-    visibility: hidden;
-    display: none;
-    top: 0;
-    right: 0;
-    background-color: rgba(31, 41, 51, 0.57);
-    justify-content: center;
-    padding: 0;
-    left: 0;
-    transition: background-color 0.5s;
-    transition-timing-function: ease-in-out;
-    border-radius: 3px;
-    min-height: 100%;
-    min-width: 100%;
-    align-items: center;
-    position: absolute;
-
-    color: #f5f7f9;
-`;
-
 const PlayText = styled.span`
     z-index: 4;
-    background-color: #c054eb;
+    background-color: transparent;
     border: 0px;
     margin-top: -30px;
     height: 33.33px;
@@ -69,12 +49,40 @@ const PlayText = styled.span`
         rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
         rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     font-size: 0.7rem;
+    transition: background-color 0.3s;
+    transition-timing-function: ease-in-out;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
     &:hover {
         cursor: pointer;
+    }
+`;
+const PlayDisplay = styled.div`
+    visibility: hidden;
+    display: none;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    justify-content: center;
+    padding: 0;
+    left: 0;
+    transition: background-color 0.3s;
+    transition-timing-function: ease-in-out;
+    border-radius: 3px;
+    min-height: 100%;
+    min-width: 100%;
+    align-items: center;
+    position: absolute;
+
+    color: #f5f7f9;
+
+    &:hover ${PlayText} {
+        background-color: #c054eb;
+    }
+    &:hover {
+        background-color: rgba(61, 81, 102, 0.8);
     }
 `;
 
@@ -93,35 +101,16 @@ const Song = styled.div`
     &:hover ${PlayDisplay} {
         visibility: visible;
         display: flex;
-        background-color: rgba(61, 81, 102, 0.8);
     }
 `;
-const User = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin-right: 20px;
-    background-color: rgba(31, 41, 51, 0.57);
-    border-radius: 3px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    &:hover {
-        cursor: pointer;
-    }
-`;
+
 const Artwork = styled.img`
     width: 150px;
     height: 150px;
     border-radius: 10px;
     padding: 5px;
-    z-index: 3;
 `;
-const UserImage = styled.img`
-    width: 150px;
-    height: 150px;
-    border-radius: 75px;
-`;
+
 const SongTitle = styled.h2`
     display: flex;
     align-items: center;
@@ -137,6 +126,26 @@ const SongArtist = styled.h2`
     font-size: 10px;
     z-index: 4;
     color: #9ea5ad;
+`;
+
+const User = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-right: 20px;
+    background-color: rgba(31, 41, 51, 0.57);
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    &:hover {
+        cursor: pointer;
+    }
+`;
+const UserImage = styled.img`
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
 `;
 const SectionContent = styled.div`
     width: 85vw;
