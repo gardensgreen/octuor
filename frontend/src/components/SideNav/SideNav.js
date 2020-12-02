@@ -71,8 +71,13 @@ const LogoutButton = styled.div`
     text-decoration: none;
     color: #3ea4bc;
     background-color: transparent;
+    transition: color 0.3s ease-in;
     border: 0;
     &:active {
+        color: #f5f7f9;
+    }
+    &:hover {
+        cursor: pointer;
         color: #f5f7f9;
     }
     height: auto;
