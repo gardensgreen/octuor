@@ -28,6 +28,9 @@
 }
 .sb-soundplayer-volume-range {
     -webkit-appearance: none;
+    display: flex;
+    margin-top: 25px;
+    align-items: center;
     width: 98%;
 }
 .sb-soundplayer-volume-range:focus {
