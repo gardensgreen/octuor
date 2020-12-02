@@ -136,7 +136,8 @@ const User = styled.div`
 const UserImage = styled.img`
     width: 150px;
     height: 150px;
-    border-radius: 75px;
+    border-radius: 100px;
+    padding: 5px;
 `;
 
 const SectionContent = styled.div`
