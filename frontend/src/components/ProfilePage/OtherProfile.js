@@ -9,11 +9,16 @@ import "./Profile.css";
 const ProfileContainer = styled.div`
     grid-area: main-view;
     overflow-y: scroll;
+    overflow-x: hidden;
 `;
 const Header = styled.div`
     display: flex;
+
     background: #3e4c59;
     padding: 30px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 `;
 
 const ProfileDetail = styled.div`
@@ -24,11 +29,10 @@ const ProfileDetail = styled.div`
 
 const ProfileName = styled.h2`
     display: block;
-    font-size: 90px;
-
+    font-size: 45px;
     margin-left: 20px;
-    margin-bottom: 20px;
     margin-top: 20px;
+    margin-bottom: 0px;
     color: #f5f7f9;
 `;
 
@@ -41,9 +45,9 @@ const ProfileExtra = styled.h3`
 `;
 
 const Avatar = styled.img`
-    width: 225px;
-    height: 225px;
-    border-radius: 125px;
+    width: 125px;
+    height: 125px;
+    border-radius: 62.5px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
         rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
         rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
