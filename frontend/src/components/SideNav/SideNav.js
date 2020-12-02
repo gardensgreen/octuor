@@ -30,13 +30,6 @@ const NavGroup = styled.ul`
     padding: 20px;
 `;
 
-const LogOutCOntainer = styled.div`
-    display: flex;
-
-    bottom: 1000px;
-    left: 0;
-`;
-
 const SideNavLink = styled(NavLink)`
     display: flex;
     align-items: center;
@@ -50,6 +43,7 @@ const SideNavLink = styled(NavLink)`
 
 const NavTitle = styled.h3`
     margin-left: 20px;
+    font-weight: 100;
 `;
 
 const LogoContainer = styled.div`
