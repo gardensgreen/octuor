@@ -113,7 +113,8 @@ const User = styled.div`
 const Artwork = styled.img`
     width: 150px;
     height: 150px;
-    border-radius: 3px;
+    border-radius: 10px;
+    padding: 5px;
     z-index: 3;
 `;
 const UserImage = styled.img`

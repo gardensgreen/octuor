@@ -37,7 +37,7 @@ const SideNavLink = styled(NavLink)`
     color: #f5f7f9;
 
     &:active {
-        color: #3ea4bc;
+        color: #c054eb;
     }
 `;
 
@@ -89,19 +89,28 @@ export default function SideNav({ userId }) {
                 </LogoContainer>
                 <NavGroup>
                     <li>
-                        <SideNavLink to="/home">
+                        <SideNavLink
+                            activeStyle={{ color: "#c054eb" }}
+                            to="/home"
+                        >
                             <HomeIcon />
                             <NavTitle>Home</NavTitle>
                         </SideNavLink>
                     </li>
                     <li>
-                        <SideNavLink to="/songs/new">
+                        <SideNavLink
+                            to="/songs/new"
+                            activeStyle={{ color: "#c054eb" }}
+                        >
                             <CloudUploadIcon />
                             <NavTitle>Upload</NavTitle>
                         </SideNavLink>
                     </li>
                     <li>
-                        <SideNavLink to={`/users/${userId}`}>
+                        <SideNavLink
+                            to={`/users/${userId}`}
+                            activeStyle={{ color: "#c054eb" }}
+                        >
                             <PersonIcon />
                             <NavTitle>Profile</NavTitle>
                         </SideNavLink>
