@@ -19,7 +19,7 @@ const PageContainer = styled.div`
     display: grid;
     grid-template-rows: auto 1fr auto;
     overflow-x: hidden;
-    grid-template-columns: 0.3fr 1fr 1fr;
+    grid-template-columns: auto 1fr 1fr;
     grid-template-areas:
         "side-nav search search"
         "side-nav main-view main-view"
