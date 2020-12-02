@@ -10,7 +10,7 @@ export default function EditSongPage({ song }) {
         justify-content: flex-start;
         width: 400px;
         grid-area: main-view;
-        margin-left: 50px;
+        margin: 0 auto;
     `;
 
     const PageTitle = styled.h1`

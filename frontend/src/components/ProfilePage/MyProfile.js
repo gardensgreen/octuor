@@ -148,7 +148,7 @@ const SongArtist = styled.h2`
 `;
 
 const SectionContent = styled.div`
-    width: 85vw;
+    width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
     display: flex;
