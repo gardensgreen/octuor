@@ -10,6 +10,7 @@ const ProfileContainer = styled.div`
     grid-area: main-view;
     overflow-y: scroll;
     overflow-x: hidden;
+    padding: 30px;
 `;
 const Header = styled.div`
     display: flex;

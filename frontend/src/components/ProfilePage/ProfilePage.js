@@ -6,6 +6,9 @@ import MyProfile from "./MyProfile";
 import OtherProfile from "./OtherProfile";
 
 const PageContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     grid-area: main-view;
 `;
 
