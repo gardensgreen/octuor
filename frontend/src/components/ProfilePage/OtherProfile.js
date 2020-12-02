@@ -11,6 +11,7 @@ const ProfileContainer = styled.div`
     overflow-y: scroll;
     overflow-x: hidden;
     padding: 30px;
+    height: 100%;
 `;
 const Header = styled.div`
     display: flex;
