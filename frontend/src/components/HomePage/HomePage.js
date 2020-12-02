@@ -10,21 +10,7 @@ import Search from "../Search/Search";
 import SearchResults from "../SearchResults/SearchResults";
 
 //Styles
-const PageContainer = styled.div`
-    min-height: 100%;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-        "search search search"
-        "main-view main-view main-view"
-        "now-playing-bar now-playing-bar now-playing-bar";
-    background-color: #323f4b;
-    align-content: start;
-`;
+
 const Main = styled.div`
     display: flex;
     padding: 30px;
@@ -32,6 +18,7 @@ const Main = styled.div`
     background-color: #323f4b;
     grid-area: main-view;
     overflow-y: scroll;
+    overflow-x: hidden;
     margin-left: 10px;
 `;
 const Section = styled.div`
@@ -238,103 +225,97 @@ export default function ProfilePage() {
 
     return (
         <>
-            <PageContainer>
-                <Search></Search>
+            <Search></Search>
 
-                {term && searching ? (
-                    <SearchResults setCurrentlyPlaying={setCurrentlyPlaying} />
-                ) : (
-                    <Main>
-                        <Section>
-                            <SectionTitle>Trending Songs</SectionTitle>
-                            <SectionContent>
-                                {loading ? (
-                                    <Loader></Loader>
-                                ) : songs[0] ? (
-                                    songs.map((song) => (
-                                        <Song
-                                            onClick={(e) =>
-                                                handleClick(e, {
-                                                    audio: song.audio,
-                                                    title: song.title,
-                                                    artwork: song.artwork,
-                                                })
+            {term && searching ? (
+                <SearchResults setCurrentlyPlaying={setCurrentlyPlaying} />
+            ) : (
+                <Main>
+                    <Section>
+                        <SectionTitle>Trending Songs</SectionTitle>
+                        <SectionContent>
+                            {loading ? (
+                                <Loader></Loader>
+                            ) : songs[0] ? (
+                                songs.map((song) => (
+                                    <Song
+                                        onClick={(e) =>
+                                            handleClick(e, {
+                                                audio: song.audio,
+                                                title: song.title,
+                                                artwork: song.artwork,
+                                            })
+                                        }
+                                        key={song.id}
+                                    >
+                                        <PlayDisplay>
+                                            <PlayText>PLAY</PlayText>
+                                        </PlayDisplay>
+                                        <Artwork
+                                            src={song.artwork}
+                                            alt="artwork"
+                                        />
+                                        <SongTitle>
+                                            {song.title.length > 10
+                                                ? song.title.slice(0, 10) +
+                                                  "..."
+                                                : song.title}
+                                        </SongTitle>
+                                        <SongArtist>
+                                            {song.User.username}
+                                        </SongArtist>
+                                    </Song>
+                                ))
+                            ) : (
+                                <div>No songs</div>
+                            )}
+                        </SectionContent>
+                    </Section>
+                    <Section>
+                        <SectionTitle>Hot Artists</SectionTitle>
+                        <SectionContent>
+                            {loading ? (
+                                <Loader></Loader>
+                            ) : users[0] ? (
+                                users.map((user) => (
+                                    <User
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            history.push(`/users/${user.id}`);
+                                        }}
+                                        key={user.id}
+                                    >
+                                        <UserImage
+                                            src={
+                                                window.location.origin +
+                                                "/artworkPlaceholder.png"
                                             }
-                                            key={song.id}
-                                        >
-                                            <PlayDisplay>
-                                                <PlayText>PLAY</PlayText>
-                                            </PlayDisplay>
-                                            <Artwork
-                                                src={song.artwork}
-                                                alt="artwork"
-                                            />
-                                            <SongTitle>
-                                                {song.title.length > 10
-                                                    ? song.title.slice(0, 10) +
-                                                      "..."
-                                                    : song.title}
-                                            </SongTitle>
-                                            <SongArtist>
-                                                {song.User.username}
-                                            </SongArtist>
-                                        </Song>
-                                    ))
-                                ) : (
-                                    <div>No songs</div>
-                                )}
-                            </SectionContent>
-                        </Section>
-                        <Section>
-                            <SectionTitle>Hot Artists</SectionTitle>
-                            <SectionContent>
-                                {loading ? (
-                                    <Loader></Loader>
-                                ) : users[0] ? (
-                                    users.map((user) => (
-                                        <User
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                history.push(
-                                                    `/users/${user.id}`
-                                                );
-                                            }}
-                                            key={user.id}
-                                        >
-                                            <UserImage
-                                                src={
-                                                    window.location.origin +
-                                                    "/artworkPlaceholder.png"
-                                                }
-                                                alt="avatar"
-                                            />
-                                            <SongTitle>
-                                                {" "}
-                                                {user.username.length > 20
-                                                    ? user.username.slice(
-                                                          0,
-                                                          20
-                                                      ) + "..."
-                                                    : user.username}
-                                            </SongTitle>
-                                        </User>
-                                    ))
-                                ) : (
-                                    <div>No users</div>
-                                )}
-                            </SectionContent>
-                        </Section>
-                    </Main>
-                )}
+                                            alt="avatar"
+                                        />
+                                        <SongTitle>
+                                            {" "}
+                                            {user.username.length > 20
+                                                ? user.username.slice(0, 20) +
+                                                  "..."
+                                                : user.username}
+                                        </SongTitle>
+                                    </User>
+                                ))
+                            ) : (
+                                <div>No users</div>
+                            )}
+                        </SectionContent>
+                    </Section>
+                </Main>
+            )}
 
-                {currentlyPlaying ? (
-                    <Player
-                        streamUrl={currentlyPlaying.audio}
-                        trackTitle={currentlyPlaying.title}
-                        preloadType="auto"
-                    />
-                ) : null}
-            </PageContainer>
+            {currentlyPlaying ? (
+                <Player
+                    streamUrl={currentlyPlaying.audio}
+                    trackTitle={currentlyPlaying.title}
+                    preloadType="auto"
+                />
+            ) : null}
         </>
     );
 }

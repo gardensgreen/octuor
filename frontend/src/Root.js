@@ -13,6 +13,9 @@ import EditSongPage from "./components/EditSongPage/EditSongPage";
 import HomePage from "./components/HomePage/HomePage";
 
 import * as sessionActions from "./store/session";
+import Layout from "./components/Layout";
+import SignUpFormPage from "./components/SignUpFormPage/SignUpFormPage";
+import PlayerLayout from "./components/PlayerLayout";
 
 const RootContainer = styled.div`
     background-color: #323f4b;
@@ -31,28 +34,30 @@ function Root() {
         <RootContainer>
             {isLoaded && (
                 <>
-                    <Navigation isLoaded={isLoaded} />
                     <Switch>
                         <Route exact path="/">
-                            <LandingPage />
+                            <Navigation isLoaded={isLoaded}></Navigation>
+                            <LandingPage></LandingPage>
                         </Route>
                         <Route path="/login">
-                            <LoginFormPage />
+                            <Navigation isLoaded={isLoaded}></Navigation>
+                            <LoginFormPage></LoginFormPage>
                         </Route>
                         <Route path="/signup">
-                            <SignupFormPage />
+                            <Navigation isLoaded={isLoaded}></Navigation>
+                            <SignUpFormPage></SignUpFormPage>
                         </Route>
                         <Route path="/home">
-                            <HomePage />
+                            <PlayerLayout />
                         </Route>
                         <Route path="/songs/new">
-                            <UploadSongPage />
+                            <PlayerLayout />
                         </Route>
                         <Route path="/songs/:songId/edit">
-                            <EditSongPage />
+                            <PlayerLayout />
                         </Route>
                         <Route path="/users/:userId">
-                            <ProfilePage />
+                            <PlayerLayout />
                         </Route>
                     </Switch>
                 </>

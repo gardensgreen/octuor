@@ -4,12 +4,13 @@ import styled from "styled-components";
 
 export default function EditSongPage({ song }) {
     const PageContainer = styled.div`
-        margin: 0 auto;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         width: 400px;
+        grid-area: main-view;
+        margin-left: 50px;
     `;
 
     const PageTitle = styled.h1`

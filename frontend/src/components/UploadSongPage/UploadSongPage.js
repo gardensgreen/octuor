@@ -1,15 +1,20 @@
 import React from "react";
 import UploadSongForm from "./UploadSongForm";
 import styled from "styled-components";
+import SideNav from "../SideNav/SideNav";
+import { useSelector } from "react-redux";
 
 export default function UploadSongPage() {
-    const PageContainer = styled.div`
-        margin: 0 auto;
+    const user = useSelector((state) => state.session.user);
+    const Main = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         width: 400px;
+        grid-area: main-view;
+
+        margin-left: 50px;
     `;
 
     const PageTitle = styled.h1`
@@ -20,9 +25,9 @@ export default function UploadSongPage() {
         color: #f5f7f9;
     `;
     return (
-        <PageContainer>
+        <Main>
             <PageTitle>Upload your song!</PageTitle>
             <UploadSongForm />
-        </PageContainer>
+        </Main>
     );
 }

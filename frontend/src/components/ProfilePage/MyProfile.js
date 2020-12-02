@@ -8,7 +8,6 @@ import { Player } from "../Player/Player";
 import "./Profile.css";
 
 const ProfileContainer = styled.div`
-    grid-area: main-view;
     overflow-y: scroll;
 `;
 const Header = styled.div`
@@ -27,7 +26,6 @@ const ProfileDetail = styled.div`
 const ProfileName = styled.h2`
     display: block;
     font-size: 90px;
-
     margin-left: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
