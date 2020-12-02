@@ -1,9 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import * as sessionActions from "../../store/session";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import PersonIcon from "@material-ui/icons/Person";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { NavLink, BrowserRouter, Route, Switch } from "react-router-dom";
 
 import HomePage from "../HomePage/HomePage";
@@ -24,6 +27,13 @@ const NavGroup = styled.ul`
     padding: 20px;
 `;
 
+const LogOutCOntainer = styled.div`
+    display: flex;
+
+    bottom: 1000px;
+    left: 0;
+`;
+
 const SideNavLink = styled(NavLink)`
     display: flex;
     align-items: center;
@@ -31,6 +41,7 @@ const SideNavLink = styled(NavLink)`
     color: #f5f7f9;
 
     &:active {
+        color: #3ea4bc;
     }
 `;
 
@@ -53,7 +64,25 @@ const Logo = styled.img`
     max-height: 70px;
     padding-left: 10px;
 `;
+
+const LogoutButton = styled.div`
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #3ea4bc;
+    background-color: transparent;
+    border: 0;
+    &:active {
+        color: #f5f7f9;
+    }
+    height: auto;
+`;
 export default function SideNav({ userId }) {
+    const dispatch = useDispatch();
+    const logout = (e) => {
+        e.preventDefault();
+        dispatch(sessionActions.logout());
+    };
     // const user = useSelector((state) => state.session.user);
     return (
         <>
@@ -79,6 +108,12 @@ export default function SideNav({ userId }) {
                             <PersonIcon />
                             <NavTitle>Profile</NavTitle>
                         </SideNavLink>
+                    </li>
+                    <li>
+                        <LogoutButton onClick={logout}>
+                            <ExitToAppIcon />
+                            <NavTitle>Logout</NavTitle>
+                        </LogoutButton>
                     </li>
                 </NavGroup>
             </SideBar>
